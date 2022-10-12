@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "declaration": true,
     "resolveJsonModule": true,
     "module": "commonjs",
-    "target": "ES2016",
+    "esModuleInterop": true,
+    "target": "es5",
     "noImplicitAny": false,
     "moduleResolution": "node",
     "sourceMap": true,
@@ -19,13 +19,5 @@
     }
   },
   "include": ["src/**/*", "test/**/*", "package.json"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "settings",
-    "server",
-    "test",
-    "docs",
-    "examples"
-  ]
+  "exclude": ["src/frontend", "node_modules", "dist"]
 }

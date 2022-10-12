@@ -2,5 +2,7 @@ docs
 settings/
 test/
 src/
-nodemon.json
 test/
+api-docs/
+jest.config.ts
+examples/

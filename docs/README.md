@@ -1,6 +1,8 @@
-# Resources
+## Speedybot
 
-- **[Serverless Examples](./serverless.md)**
+- **[Setup](./setup_bot.md)**
+
+- **[Webhooks](./webhooks.md)**
 
 ### Bot Token
 
@@ -10,14 +12,12 @@
 
 ### Useful reading
 
-- https://developer.webex.com/docs/api/guides/webhooks
+- https://developer.webex.com/blog/from-zero-to-webex-teams-chatbot-in-15-minutes
 
-- https://developer.webex.com/docs/api/v1/webhooks
+- https://developer.webex.com/blog/introducing-the-webex-teams-bot-framework-for-node-js
 
-- https://developer.webex.com/docs/api/guides/webhooks#handling-requests-from-webex-teams
+- https://github.com/WebexSamples/webex-card-school/blob/master/README.md
 
-- https://developer.webex.com/blog/using-webhooks---rooms-messages-memberships-and-more-
+- https://developer.webex.com/blog/five-tips-for-well-behaved-webex-bots
 
-- https://developer.webex.com/docs/api/v1/messages/get-message-details
-
-- https://developer.webex.com/blog/spark-bot-demo
+- https://github.com/WebexSamples/webex-node-bot-framework/blob/master/docs/buttons-and-cards-example.md

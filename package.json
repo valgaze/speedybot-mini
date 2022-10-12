@@ -1,46 +1,29 @@
 {
-	"name": "speedybot-mini",
-	"version": "0.0.2",
-	"description": "Speedy & easy way to deploy a serverless bot",
-	"main": "./dist/src/index.js",
-	"types": "./dist/src/index.d.ts",
-	"scripts": {
-		"test": "npm run build && node_modules/.bin/tape dist/test/*.test.js",
-		"patch": "npx np patch",
-		"prepublish": "npm run build",
-		"dev": "nodemon",
-		"start": "ts-node src/launcher",
-		"build:global": "tsc",
-		"build": "./node_modules/typescript/bin/tsc",
-		"setup": "npm i && npm run build",
-		"server": "cd test/server && ts-node index.ts",
-		"register:webhook": "npx speedyhelper webhook register"
-	},
-	"keywords": [
-		"serverless",
-		"bot",
-		"scaffold",
-		"demo",
-		"speedybot"
-	],
-	"author": "valgaze@gmail.com",
-	"license": "MIT",
-	"dependencies": {
-		"axios": "^0.23.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/valgaze/speedybot-mini.git"
-	},
-	"devDependencies": {
-		"@types/axios": "^0.14.0",
-		"@types/node": "^13.13.52",
-		"@types/tape": "^4.13.2",
-		"body-parser": "^1.19.0",
-		"express": "^4.17.1",
-		"nodemon": "^2.0.4",
-		"tape": "^5.3.1",
-		"ts-node": "^8.10.1",
-		"typescript": "^3.8.3"
-	}
+  "name": "speedybot-mini",
+  "version": "2.0.0",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "devDependencies": {
+    "@types/jest": "^29.1.2",
+    "@types/node": "^18.8.4",
+    "jest": "^29.2.0",
+    "ts-jest": "^29.0.3",
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^3.10.1",
+    "typedoc": "0.22.18",
+    "typedoc-plugin-markdown": "3.12.1",
+    "typedoc-theme-hierarchy": "1.2.1",
+    "typescript": "^4.7.2"
+  },
+  "scripts": {
+    "save": "git add . && git commit -m \"checkpt\" && git push draft deploy",
+    "publish:beta": "npm publish --tag beta",
+    "docs": "rm -rf api-docs 2>/dev/null && npx --yes typedoc --media docs/assets --plugin typedoc-plugin-markdown --out api-docs src/docs.ts",
+    "build": "npm test && tsc && npm run docs",
+    "test": "jest",
+    "dev": "tsnd --respawn --watch src/lib, src/lib/index"
+  },
+  "engines": {
+    "node": ">=18.11.0"
+  }
 }

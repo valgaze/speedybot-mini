@@ -1,3 +1,5 @@
+speedybot-mini / [Exports](modules.md)
+
 # 🏖 `speedybot-mini` super-fast "no-ops" conversation design infrastructure
 
 ```
