@@ -255,12 +255,14 @@ export class Speedybot {
     return type as RequestTypes;
   }
 
-  async processIncoming(envelope: ENVELOPES): Promise<void> {
+  async processIncoming(
+    envelope: ENVELOPES
+  ): Promise<{ incomingProcessed: boolean }> {
     const type = this.detectType(envelope);
     const { personId, roomId } = envelope.data;
     const isHuman = await this.isHuman(personId);
 
-    if (!isHuman) return; // <-- hmmm, later we should think about bots talking to other bots
+    if (!isHuman) return { incomingProcessed: true }; // <-- hmmm, later we should think about bots talking to other bots
     const { author, details } = await this.buildDetails(type, envelope);
     const botTrigger: RootTrigger = {
       id: details.id,
@@ -292,7 +294,7 @@ export class Speedybot {
             if (photos.includes(extension)) {
               const camHandler = this.handlers.camera as FileHandlerFunc;
               if (camHandler) {
-                camHandler(botInst, botTrigger, res);
+                await camHandler(botInst, botTrigger, res);
               }
             } else {
               const handler: FileHandlerFunc = this.handlers
@@ -300,7 +302,7 @@ export class Speedybot {
               const exclusionList =
                 this._config.features?.files.excludeFiles || [];
               if (handler && !exclusionList.includes(extension)) {
-                handler(botInst, botTrigger, res);
+                await handler(botInst, botTrigger, res);
               }
             }
           } else if (this.handlers.file) {
@@ -309,7 +311,7 @@ export class Speedybot {
             const exclusionList =
               this._config.features?.files.excludeFiles || [];
             if (handler && !exclusionList.includes(extension)) {
-              handler(botInst, botTrigger, res);
+              await handler(botInst, botTrigger, res);
             }
           }
         }
@@ -326,7 +328,7 @@ export class Speedybot {
         const handler = this.processText(tidyText);
         if (handler) {
           const botInst = new BotInst(bot_config, this.makeRequest);
-          handler(botInst, { ...botTrigger, text });
+          await handler(botInst, { ...botTrigger, text });
         }
 
         // Run catchall handler
@@ -335,7 +337,7 @@ export class Speedybot {
           catchall &&
           !this._config.features?.catchAll.skipList.includes(text)
         ) {
-          catchall(new BotInst(bot_config), { ...botTrigger, text });
+          await catchall(new BotInst(bot_config), { ...botTrigger, text });
         }
       }
     }
@@ -344,7 +346,7 @@ export class Speedybot {
       const handler = this.processSubmit(details as AA_Details);
       if (handler) {
         const botInst = new BotInst(bot_config, this.makeRequest);
-        handler(botInst, {
+        await handler(botInst, {
           ...botTrigger,
           ...("inputs" in details &&
             details.inputs.chip_action && {
@@ -359,11 +361,14 @@ export class Speedybot {
             catchall &&
             !this._config.features?.catchAll.skipList.includes(text)
           ) {
-            catchall(new BotInst(bot_config), { ...botTrigger, text });
+            await catchall(new BotInst(bot_config), { ...botTrigger, text });
           }
         }
       }
     }
+    return {
+      incomingProcessed: true,
+    };
   }
 
   processSubmit(details: AA_Details) {

@@ -13,6 +13,6 @@
     "deploy:mini": "wrangler publish --minify"
   },
   "dependencies": {
-    "speedybot-mini": "^2.0.0"
+    "speedybot-mini": "^2.0.1"
   }
 }

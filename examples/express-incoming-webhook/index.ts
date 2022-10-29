@@ -1,4 +1,4 @@
-require("isomorphic-fetch");
+import "cross-fetch/polyfill";
 
 import express from "express";
 import bodyParser from "body-parser";
@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 app.use(bodyParser.json());
 
-app.post("/", async (req, res) => {
+app.post("/speedybot", async (req, res) => {
   const json = req.body;
   // Here could check headers for X-Spark-Signature and hash with a secret to verify envelope is authentic
   // For more info see: https://github.com/valgaze/speedybot-mini/blob/deploy/docs/webhooks.md#secrets

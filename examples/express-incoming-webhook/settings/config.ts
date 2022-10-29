@@ -1,6 +1,6 @@
-import { Speedybot, Config } from "speedybot-mini";
+import { Speedybot } from "speedybot-mini";
 
-const botConfig: Config = {
+const botConfig = {
   token: "__REPLACE__ME__",
   locales: {
     es: {

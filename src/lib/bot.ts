@@ -1180,7 +1180,7 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    *    const myData = {a:1,b:2,c:{d:3}}
    *    const succeed = $bot.lookUp(myData, 'a.b.c.d', 'fallback') // 3
    *    const fail = $bot.lookUp(myData, 'a.b.ce.e.f.g', 'fallback') // 'fallback'
-   *    $bot.sned(`succeed: ${succeed}, fail: ${fail}`)
+   *    $bot.send(`succeed: ${succeed}, fail: ${fail}`)
    *  })
    * ```
    *
