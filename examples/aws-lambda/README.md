@@ -4,7 +4,7 @@ Follow the steps below to deploy a secure serverless chat agent running on AWS L
 
 Note: This example uses the **[Serverless Stack (SST)](https://serverless-stack.com/)** toolchain for provisioning, deployment of infrastructure. SST is built on top of a version **[AWS Cloud Development Kit (cdk)](https://aws.amazon.com/cdk/)** let's you express your infrastructure needs as spec/code. SST is definitely not required but is the quickest route to a serverless deployment.
 
-## 1. Fetch repo & install dependencies
+## 1) Fetch repo & install dependencies
 
 ```
 git clone https://github.com/valgaze/speedybot-mini
@@ -13,7 +13,7 @@ cd examples/aws-lambda
 npm install
 ```
 
-## 2. Set your bot access token
+## 2) Set your bot access token
 
 - If you have an existing bot, get its token here: **[https://developer.webex.com/my-apps](https://developer.webex.com/my-apps)**
 
@@ -23,7 +23,7 @@ npm install
 
 Note: The `.env` file will never be aded to source control, **[further details here](https://docs.sst.dev/environment-variables)**
 
-## 3. Set up your AWS credentials on your machine
+## 3) Set up your AWS credentials on your machine
 
 Note: You'll need an AWS account that has authorization/billing to create lambda functions
 
@@ -31,7 +31,7 @@ Note: You'll need an AWS account that has authorization/billing to create lambda
 
 3b. Setup AWS CLI: https://sst.dev/chapters/configure-the-aws-cli.html
 
-## 4. Deploy your bot and get its public URL
+## 4) Deploy your bot and get its public URL
 
 Run this command from the project directory:
 
@@ -41,7 +41,7 @@ npm run deploy
 
 If deployment is successful, you should find that your url that looks something like this: https://abcd123456.execute-api.us-east-1.amazonaws.com
 
-## 4. Register webhooks using Speedybot Garage
+## 4) Register webhooks using Speedybot Garage
 
 In order for your agent to process incoming messages, you'll need to register your agent's URL to receive webhooks for chat
 
@@ -53,7 +53,7 @@ Based on **[stacks/MyStack.ts](./stacks/MyStack.ts)**, append `/speedybot` so th
 
 ![image](./assets/speedybot_garage_demo.gif)
 
-## 4b. (Alternative) Register webhooks using the command line
+## 4b) (Alternative) Register webhooks using the command line
 
 In a terminal enter the following command:
 

@@ -4,7 +4,7 @@ import { serve } from "https://deno.land/std/http/mod.ts";
 import {
   Speedybot,
   finale,
-} from "https://cdn.skypack.dev/speedybot-mini@2.0.0";
+} from "https://cdn.skypack.dev/speedybot-mini@2.0.1";
 
 const botConfig = {
   token: "__REPLACE__ME__",

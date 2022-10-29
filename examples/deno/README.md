@@ -6,7 +6,7 @@ Note: The steps below assume you have a **[working WebEx account](https://develo
 
 - Video: https://share.descript.com/view/B3mNHNODfZf
 
-## 1. Get the starter bot code
+## 1) Get the starter bot code
 
 ```
 git clone https://github.com/valgaze/speedybot-mini
@@ -16,7 +16,7 @@ cat index.ts
 
 Or access directly here: **[index.ts](https://github.com/valgaze/speedybot-mini/blob/deploy/examples/deno/index.ts)**
 
-## 2. Set your bot access token
+## 2) Set your bot access token
 
 - If you have an existing bot, get its token here: **[https://developer.webex.com/my-apps](https://developer.webex.com/my-apps)**
 
@@ -26,7 +26,7 @@ Or access directly here: **[index.ts](https://github.com/valgaze/speedybot-mini/
 
 - Update the `token` field in index.ts with your access token (or securely expose to Deno for a production project)
 
-## 3. Create a new Project in Deno
+## 3) Create a new Project in Deno
 
 - If you don't have one, sign up for a **[deno deploy account](https://deno.com/deploy)**
 
@@ -34,13 +34,13 @@ Or access directly here: **[index.ts](https://github.com/valgaze/speedybot-mini/
 
 ![sb](./assets/new_project.png)
 
-## 4. Open the Deno "playground"
+## 4) Open the Deno "playground"
 
 - Tap the play button in the top right corner
 
 ![sb](./assets/tap_play.png)
 
-## 5. Copy the contents of index.ts
+## 5) Copy the contents of index.ts
 
 - Copy/paste the content **[index.ts](./index.ts)** into the Deno playground and update the `token` field if you haven't already
 
@@ -48,7 +48,7 @@ Or access directly here: **[index.ts](https://github.com/valgaze/speedybot-mini/
 
 ![sb](./assets/deploy_deno.gif)
 
-## 6. Set up your webhooks
+## 6) Set up your webhooks
 
 - Make a note the URL of the Deno function from the top-right corner
 
@@ -56,7 +56,7 @@ Or access directly here: **[index.ts](https://github.com/valgaze/speedybot-mini/
 
 ![sb](./assets/register_webhooks.gif)
 
-## 7. Test your bot
+## 7) Test your bot
 
 ![sb](./../../docs/assets/demo_chips.gif)
 

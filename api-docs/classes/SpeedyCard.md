@@ -65,7 +65,7 @@
 
 #### Defined in
 
-[lib/cards.ts:156](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L156)
+[lib/cards.ts:156](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L156)
 
 ## Properties
 
@@ -75,7 +75,7 @@
 
 #### Defined in
 
-[lib/cards.ts:131](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L131)
+[lib/cards.ts:131](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L131)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:135](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L135)
+[lib/cards.ts:135](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L135)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:123](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L123)
+[lib/cards.ts:123](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L123)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:120](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L120)
+[lib/cards.ts:120](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L120)
 
 ___
 
@@ -115,7 +115,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:119](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L119)
+[lib/cards.ts:119](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L119)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:133](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L133)
+[lib/cards.ts:133](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L133)
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:142](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L142)
+[lib/cards.ts:142](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L142)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:121](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L121)
+[lib/cards.ts:121](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L121)
 
 ___
 
@@ -155,7 +155,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:122](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L122)
+[lib/cards.ts:122](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L122)
 
 ___
 
@@ -165,7 +165,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:125](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L125)
+[lib/cards.ts:125](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L125)
 
 ___
 
@@ -175,7 +175,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:124](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L124)
+[lib/cards.ts:124](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L124)
 
 ___
 
@@ -185,7 +185,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:149](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L149)
+[lib/cards.ts:149](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L149)
 
 ___
 
@@ -195,7 +195,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:132](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L132)
+[lib/cards.ts:132](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L132)
 
 ___
 
@@ -205,7 +205,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:118](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L118)
+[lib/cards.ts:118](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L118)
 
 ___
 
@@ -215,7 +215,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:116](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L116)
+[lib/cards.ts:116](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L116)
 
 ___
 
@@ -225,7 +225,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:130](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L130)
+[lib/cards.ts:130](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L130)
 
 ___
 
@@ -235,7 +235,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:136](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L136)
+[lib/cards.ts:136](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L136)
 
 ___
 
@@ -245,7 +245,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:134](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L134)
+[lib/cards.ts:134](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L134)
 
 ___
 
@@ -255,7 +255,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:115](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L115)
+[lib/cards.ts:115](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L115)
 
 ___
 
@@ -265,7 +265,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:117](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L117)
+[lib/cards.ts:117](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L117)
 
 ___
 
@@ -275,7 +275,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:128](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L128)
+[lib/cards.ts:128](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L128)
 
 ___
 
@@ -285,7 +285,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:129](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L129)
+[lib/cards.ts:129](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L129)
 
 ## Methods
 
@@ -306,7 +306,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:319](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L319)
+[lib/cards.ts:319](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L319)
 
 ___
 
@@ -327,7 +327,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:312](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L312)
+[lib/cards.ts:312](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L312)
 
 ___
 
@@ -347,7 +347,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:533](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L533)
+[lib/cards.ts:533](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L533)
 
 ___
 
@@ -361,7 +361,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:364](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L364)
+[lib/cards.ts:364](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L364)
 
 ___
 
@@ -381,7 +381,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:595](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L595)
+[lib/cards.ts:595](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L595)
 
 ___
 
@@ -401,7 +401,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:175](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L175)
+[lib/cards.ts:175](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L175)
 
 ___
 
@@ -421,7 +421,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:216](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L216)
+[lib/cards.ts:216](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L216)
 
 ___
 
@@ -442,7 +442,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:329](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L329)
+[lib/cards.ts:329](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L329)
 
 ___
 
@@ -463,7 +463,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:195](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L195)
+[lib/cards.ts:195](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L195)
 
 ___
 
@@ -483,7 +483,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:249](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L249)
+[lib/cards.ts:249](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L249)
 
 ___
 
@@ -504,7 +504,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:257](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L257)
+[lib/cards.ts:257](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L257)
 
 ___
 
@@ -529,7 +529,7 @@ Kinda like Action.Showcard: https://adaptivecards.io/explorer/Action.ShowCard.ht
 
 #### Defined in
 
-[lib/cards.ts:288](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L288)
+[lib/cards.ts:288](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L288)
 
 ___
 
@@ -550,7 +550,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:208](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L208)
+[lib/cards.ts:208](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L208)
 
 ___
 
@@ -571,7 +571,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:221](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L221)
+[lib/cards.ts:221](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L221)
 
 ___
 
@@ -592,7 +592,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:187](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L187)
+[lib/cards.ts:187](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L187)
 
 ___
 
@@ -612,7 +612,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:240](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L240)
+[lib/cards.ts:240](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L240)
 
 ___
 
@@ -632,7 +632,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:158](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L158)
+[lib/cards.ts:158](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L158)
 
 ___
 
@@ -653,7 +653,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:267](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L267)
+[lib/cards.ts:267](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L267)
 
 ___
 
@@ -674,7 +674,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:179](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L179)
+[lib/cards.ts:179](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L179)
 
 ___
 
@@ -695,7 +695,7 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:229](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L229)
+[lib/cards.ts:229](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L229)
 
 ___
 
@@ -715,4 +715,4 @@ ___
 
 #### Defined in
 
-[lib/cards.ts:235](https://github.com/valgaze/speedybot-mini/blob/d0f9865/src/lib/cards.ts#L235)
+[lib/cards.ts:235](https://github.com/valgaze/speedybot-mini/blob/5859691/src/lib/cards.ts#L235)
