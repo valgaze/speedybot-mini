@@ -21,7 +21,7 @@ const botConfig: Config = {
 // 1) Initialize your bot w/ config
 const CultureBot = new Speedybot(botConfig);
 
-// 2) Export your bpt
+// 2) Export your bot
 export default CultureBot;
 
 // 3) Do whatever you want!
