@@ -127,7 +127,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -159,7 +159,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -195,7 +195,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -236,7 +236,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -305,7 +305,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('token_placeholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -405,7 +405,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -499,7 +499,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -536,7 +536,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot(config);
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -573,7 +573,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot(config);
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -620,7 +620,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot(config);
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -746,7 +746,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot(config);
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -951,7 +951,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot(config);
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -996,7 +996,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -1024,7 +1024,7 @@ export class BotInst {
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -1063,7 +1063,7 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -1097,7 +1097,7 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -1123,7 +1123,7 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -1170,7 +1170,7 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -1214,7 +1214,7 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -1250,7 +1250,7 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -1288,7 +1288,7 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -1326,7 +1326,7 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -1362,7 +1362,7 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!
@@ -1456,7 +1456,7 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * // 1) Initialize your bot w/ config
    * const CultureBot = new Speedybot('tokenPlaceholder');
    *
-   * // 2) Export your bpt
+   * // 2) Export your bot
    * export default CultureBot;
    *
    * // 3) Do whatever you want!

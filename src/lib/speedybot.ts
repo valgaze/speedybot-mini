@@ -460,7 +460,16 @@ export class Speedybot {
   }
 
   private async deleteMessage(msgId: string) {
-    return msgId;
+    const url = `${API.deleteMessage}/${msgId}`;
+    const res = await this.makeRequest(
+      url,
+      {},
+      {
+        token: this.getToken(),
+        method: "DELETE",
+      }
+    );
+    return res;
   }
 
   public setToken(token: string) {
