@@ -8,21 +8,12 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 import CultureBot from "./config";
+import { validateWebhook } from "./validateWebhook";
 import { ENVELOPES, finale } from "speedybot-mini";
 export interface Env {
   BOT_TOKEN: string;
+  WEBHOOK_SECRET: string;
 }
-const validateHeader = <T = any>(
-  secret: string,
-  signature: string,
-  body: T
-) => {
-  let proceed = false;
-  // Using web-crypto generate hmac using secret
-  // check digest of request body to signature
-
-  return proceed;
-};
 
 export default {
   async fetch(
@@ -32,10 +23,20 @@ export default {
   ): Promise<Response> {
     CultureBot.setToken(env.BOT_TOKEN);
     const json = await request.json();
+    const signature = request.headers.get("x-spark-signature");
+    const secret = env.WEBHOOK_SECRET;
+
+    // Validate webhook
+    if (secret && signature) {
+      const proceed = await validateWebhook(json, secret, signature);
+      if (proceed === false) {
+        return new Response("Webhook Secret Rejected");
+      }
+    }
+
     ctx.waitUntil(
       new Promise<void>(async (resolve, reject) => {
         try {
-          // Do whatever checks/validation, processIncoming presumes it has good input
           const isEnvelope = CultureBot.isEnvelope(json);
           if (isEnvelope) {
             await CultureBot.processIncoming(json as ENVELOPES);

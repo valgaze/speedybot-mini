@@ -4,7 +4,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import CultureBot from "./settings/config";
 import { finale } from "speedybot-mini";
-
+import { validateWebhook } from "./validateWebhook";
 const app = express();
 const port = process.env.PORT || 8000;
 app.use(bodyParser.json());
@@ -13,6 +13,17 @@ app.post("/speedybot", async (req, res) => {
   const json = req.body;
   // Here could check headers for X-Spark-Signature and hash with a secret to verify envelope is authentic
   // For more info see: https://github.com/valgaze/speedybot-mini/blob/deploy/docs/webhooks.md#secrets
+
+  const signature = req.header("x-spark-signature");
+  const webhookSecret = "__REPLACE__ME__";
+
+  // Validate webhook
+  if (webhookSecret && signature) {
+    const proceed = validateWebhook(json, webhookSecret, signature);
+    if (proceed === false) {
+      return res.send("Webhook Secret Rejected");
+    }
+  }
 
   const proceed = CultureBot.isEnvelope(json);
   if (proceed) {
@@ -55,12 +66,12 @@ app.post("/incoming_webhook", async (req, res) => {
   );
 });
 
-// For "standard" chat traffic
 app.get("/", (_, res) => {
   res.send(
     "Register your bot's with Speedybot Garage: https://codepen.io/valgaze/full/MWVjEZV"
   );
 });
+
 app.listen(port, () => {
   console.log(`Listening + tunneled on port ${port}`);
 });

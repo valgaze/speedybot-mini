@@ -96,7 +96,7 @@ CultureBot.every(async ($bot, msg) => {
 
 // If no matched handlers
 CultureBot.noMatch(($bot, msg) => {
-  $bot.say(`Bummer, there was no matching handler for '${msg.text}`);
+  $bot.say(`Bummer, there was no matching handler for '${msg.text}'`);
 });
 ```
 
@@ -235,3 +235,7 @@ CultureBot.contains("chips", async ($bot, msg) => {
 ```
 
 </details>
+
+## Credits/Attribution
+
+- Cookie image courtesy of Daniel Lopez: https://unsplash.com/photos/aT7CE57EZL8 & https://unsplash.com/@soydanielwolf

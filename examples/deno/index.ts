@@ -4,10 +4,10 @@ import { serve } from "https://deno.land/std/http/mod.ts";
 import {
   Speedybot,
   finale,
-} from "https://cdn.skypack.dev/speedybot-mini@2.0.1";
+} from "https://cdn.skypack.dev/speedybot-mini@2.0.2";
 
 const botConfig = {
-  token: "__REPLACE__ME__",
+  token: "__REPLACE__ME__", // Use a proper secrets manager, ex https://deno.land/x/dotenv@v3.2.0
   locales: {
     es: {
       greetings: {
@@ -31,6 +31,25 @@ const CultureBot = new Speedybot(botConfig);
 export default CultureBot;
 
 // 3) Do whatever you want!
+
+CultureBot.contains("healthcheck", ($bot) => {
+  // Adapative Card: https://developer.webex.com/docs/api/guides/cards
+  const card = $bot
+    .card({
+      title: "System is 👍",
+      subTitle: "If you see this card, everything is working",
+      image:
+        "https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/chocolate_chip_cookies.png",
+      url: "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      urlLabel: "Take a moment to celebrate",
+      table: [[`Bot's Date`, new Date().toDateString()]],
+    })
+    .setInput(`What's on your mind?`)
+    .setData({ mySpecialData: { a: 1, b: 2 } })
+    .setChoices(["option a", "option b", "option c"]);
+
+  $bot.send(card);
+});
 
 CultureBot.contains("chips", async ($bot, msg) => {
   $bot.send(
@@ -268,7 +287,7 @@ CultureBot.every(async ($bot, msg) => {
 
 // If no matched handlers
 CultureBot.noMatch(($bot, msg) => {
-  $bot.say(`Bummer, there was no matching handler for '${msg.text}`);
+  $bot.say(`Bummer, there was no matching handler for '${msg.text}'`);
 });
 
 async function reqHandler(req: Request) {
@@ -277,7 +296,17 @@ async function reqHandler(req: Request) {
   }
   const json = await req.json();
 
-  console.log("incoming", json);
+  // Validate webhooks, details here: https://github.com/valgaze/speedybot-mini/blob/deploy/docs/webhooks.md
+  const signature = req.headers.get("x-spark-signature");
+  const webhookSecret = "__REPLACE__ME__";
+  // Validate webhook
+  if (webhookSecret && signature && webhookSecret !== "__REPLACE__ME__") {
+    const proceed = await validateWebhook(json, webhookSecret, signature);
+    if (proceed === false) {
+      return new Response("Webhook Secret Rejected");
+    }
+  }
+
   const proceed = CultureBot.isEnvelope(json);
   if (proceed && req.method === "POST") {
     CultureBot.processIncoming(json);
@@ -285,3 +314,39 @@ async function reqHandler(req: Request) {
   return new Response("Request handled");
 }
 serve(reqHandler, { port: 1337 });
+
+async function validateWebhook<T = any>(
+  requestData: T,
+  secret: string,
+  signature: string
+): Promise<boolean> {
+  const stringyBody =
+    typeof requestData !== "string" ? JSON.stringify(requestData) : requestData;
+  const algo = {
+    name: "HMAC",
+    hash: "SHA-1",
+  };
+  const enc = {
+    name: "UTF-8",
+  };
+  const hmacKey = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(secret),
+    algo,
+    false,
+    ["sign"]
+  );
+  const hmacData = await crypto.subtle.sign(
+    algo,
+    hmacKey,
+    new TextEncoder().encode(stringyBody)
+  );
+
+  const bufferToHex = (buffer: ArrayBufferLike) => {
+    return Array.prototype.map
+      .call(new Uint8Array(buffer), (x) => ("00" + x.toString(16)).slice(-2))
+      .join("");
+  };
+  const hmacDataHex = bufferToHex(hmacData);
+  return hmacDataHex === signature;
+}
