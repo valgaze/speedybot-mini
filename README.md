@@ -1,28 +1,8 @@
-# 🏖 `speedybot-mini` super-fast "no-ops" conversation design infrastructure
-
-```
-╔═╗ ╔═╗ ╔═╗ ╔═╗ ╔╦╗ ╦ ╦ ╔╗  ╔═╗ ╔╦╗
-╚═╗ ╠═╝ ║╣  ║╣   ║║ ╚╦╝ ╠╩╗ ║ ║  ║
-╚═╝ ╩   ╚═╝ ╚═╝ ═╩╝  ╩  ╚═╝ ╚═╝  ╩ mini
-```
-
-**serverless chat that actually works**
-
-📚 [API Docs](https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/modules.md#classes)
-
-Speedybot-mini is a portable chat engine that you can run almost anywhere
-
-## Quickstarts
-
-- **[speedybot garage 🔧🤖, manage webhooks/secrets/admin](https://codepen.io/valgaze/pen/MWVjEZV)**
-
-- **[Deploy to Deno](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/deno)**
-
-- **[Deploy to Worker](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/worker)**
-
-- **[Deploy to Traditional Server](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/express-incoming-webhook)**
+![sb](https://github.com/valgaze/speedybot-mini/raw/deploy/docs/assets/logo.png?raw=true)
 
 ## Speedybot-mini
+
+tl;dr: this should take care of most of the behind-the-scenes so you can focus on your content, see **[quickstarts](#quickstarts)** to get up and running fast
 
 - 🌟 Zero External Dependencies 🌟
 - Adds support **[tappable suggestion "chips"](#chips)**
@@ -31,7 +11,23 @@ Speedybot-mini is a portable chat engine that you can run almost anywhere
 - Optimized for **[V8 Isolates](https://developers.cloudflare.com/workers/learning/how-workers-works/)** for milisecond response times (🥶 no more cold start problems 🥶)
 - Runs on virtually any infrastructure-- servers, V8 isolates, containers, container-less, edge, etc
 
-The era of manually writing "handlers" or matching text with RegEx's is coming to an end. In the future there will be far fewer "keyword" handlers and instead deeper integration with 3rd-party conversation services like **[Voiceflow](https://www.voiceflow.com/)**, **[Amazon Lex](https://aws.amazon.com/lex/)**, **[DialogFlow](https://cloud.google.com/dialogflow/docs)**
+The era of manually writing "handlers" or matching text with RegEx's is coming to an end (though Speedybot has several trick to make that easier). In the future there will be far fewer "keyword" handlers and instead deeper integration with 3rd-party conversation services like **[Voiceflow](https://www.voiceflow.com/)**, **[Amazon Lex](https://aws.amazon.com/lex/)**, **[DialogFlow](https://cloud.google.com/dialogflow/docs)**
+
+## Quickstarts
+
+You can get up and running FAST with Speedybot. Speedybot can run on a variety of architectures and environments
+
+- **[speedybot garage 🔧🤖, manage webhooks/secrets/admin](https://codepen.io/valgaze/pen/MWVjEZV)**
+
+- 📚 **[API Docs](https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/modules.md#classes)**
+
+| Platform                                                                                                                          | Needs server? | Needs webhooks? |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------- |
+| **[🔌 Deploy with websockets](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/webhooks)**                          | ❌            | ❌              |
+| **[💻 Deploy to Simple Express Server](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/express-incoming-webhook)** | ✅            | ✅              |
+| **[λ Deploy to AWS Lamda](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/aws-lambda)**                            | ❌            | ✅              |
+| **[🔥 Deploy to Worker](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/worker)**                                  | ❌            | ✅              |
+| **[🦖 Deploy to Deno](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/deno)**                                      | ❌            | ✅              |
 
 ## Syntax
 
@@ -40,6 +36,55 @@ npm install speedybot-mini
 ```
 
 **[See starter bot](./settings/config.ts)**
+
+## How to make a bot
+
+## Keywords
+
+Speedybot is made up of "handlers" that trigger based on special conditions-- depending on your needs you'll probably need only one or two in your project
+
+| Keyword                                                                                                       | Description                                                                                                                                             |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **[.contains](https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/classes/Speedybot.md#contains)** | This will match if a trigger phrase is the 1st or only word in a message sent from a user                                                               |
+| **[.fuzzy](https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/classes/Speedybot.md#fuzzy)**       | This will match if a trigger phrase exists _anywhere_ inside a message sent from the user                                                               |
+| **[.exact](https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/classes/Speedybot.md#exact)**       | This will match if a trigger phrase is exactly (case-sensitve) a message sent from a user                                                               |
+| **[.fuzzy](https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/classes/Speedybot.md#regex)**       | This will match if a message sent from a user passes the regex                                                                                          |
+| **[.every](https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/classes/Speedybot.md#every)**       | This will match on every message from a user                                                                                                            |
+| **[.nlu](https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/classes/Speedybot.md#nlu)**           | This will match on every message from a user except if the trigger phrase is used by hard-coded handler, designed for use with natural language systems |
+| **[.onSubmit](https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/classes/Speedybot.md#onSubmit)** | This will trigger when data is sent from an **[](https://developer.webex.com/docs/api/guides/cards)**                                                   |
+| **[.onFile](https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/classes/Speedybot.md#onFile)**     | This will trigger every time a file is sent to the agent and will provide file meta data                                                                |
+| **[.onCamera](https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/classes/Speedybot.md#onCamera)** | This will trigger every time an image file sent to the agent                                                                                            |
+| **[.noMatch](https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/classes/Speedybot.md#noMatch)**   | This will trigger if there are no registered handlers for the user's text                                                                               |
+
+<details>
+<summary>Note on Precedence</summary>
+
+Rule: the 1st registered handler will match in the event of a conflict
+
+Ex. Below since it was set first, fuzzy will take precedence over `contains`
+
+```ts
+import { Speedybot, Config } from "speedybot-mini";
+
+const botConfig: Config = {
+  token: "__REPLACE__ME__",
+};
+
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot(botConfig);
+
+CultureBot.fuzzy("hi", ($bot, msg) => {
+  $bot.send("Fuzzy launched");
+});
+
+CultureBot.contains("hi", ($bot, msg) => {
+  $bot.send("Contains launched");
+});
+```
+
+</details>
+
+See the main **[sample for all you can do](./settings/config.ts)**, but here's how you could make a simple agent
 
 ```ts
 import { Speedybot } from "speedybot-mini";
@@ -55,9 +100,19 @@ const CultureBot = new Speedybot(botConfig);
 export default CultureBot;
 
 // 3) Do whatever you want!
-// Match handlers based on user input like
-CultureBot.contains("hi", async ($bot, msg) => {
+
+// Match handlers based on user input
+CultureBot.contains(["hi", "yo", "hola"], async ($bot, msg) => {
   $bot.send(`You said '${msg.text}', ${msg.author.displayName}!`);
+  $bot.send(
+    $bot
+      .card({
+        title: `Hi ${msg.author.displayName}!`,
+        subTitle: `Glad to have you here, you said ${msg.text}`,
+        chips: ["ping", "pong"],
+      })
+      .setInput(`What's on your mind?`)
+  );
 });
 
 // Can also do Regex's
@@ -65,7 +120,8 @@ CultureBot.regex(new RegExp("x"), ($bot, msg) => {
   $bot.send(`Regex matched on this text:  ${msg.text}`);
 });
 
-// Special keywords: .onSubmit, .onFile, .onCamera, .every, .noMatch,
+// Special keywords: .onSubmit, .onFile, .onCamera, .every, .noMatch, etc
+
 // Handle AdpativeCard submissions
 CultureBot.onSubmit(($bot, msg) => {
   $bot.send(`You submitted ${JSON.stringify(msg.data.inputs)}`);
@@ -77,13 +133,6 @@ CultureBot.onFile(async ($bot, msg, fileData) => {
   $bot.send(`snip: ${fileData.markdownSnippet}`);
   $bot.send(fileData.data);
 }).config({ matchText: true });
-
-// Runs like file-upload, but for images
-CultureBot.onCamera(async ($bot, msg, fileData) => {
-  $bot.send(`{oncamera} '${fileData.fileName}'`);
-  $bot.send(`snip: ${fileData.markdownSnippet}`);
-  $bot.send(fileData.data);
-});
 
 // Runs on EVERY input, kinda like middleware
 // This is where you would interact with an NLU service like DialogFlow, Amazon Lex, Voiceflow, etc
@@ -100,23 +149,7 @@ CultureBot.noMatch(($bot, msg) => {
 });
 ```
 
-```ts
-import Culturebot from "./config.ts";
-
-// use .processIncoming to handle incoming requests
-export default {
-  async fetch(request: Request): Promise<Response> {
-    const json = await request.json();
-
-    // Do whatever checks/validation, processIncoming presumes it has good input
-    const isEnvelope = CultureBot.isEnvelope(json);
-    if (isEnvelope && request.method === "POST") {
-      await CultureBot.processIncoming(json as ENVELOPES);
-    }
-    return new Response(finale());
-  },
-};
-```
+There's much more, see this **[sample for all you can do](./settings/config.ts)**
 
 ## SpeedyCard
 
@@ -128,7 +161,7 @@ ex. Tell the bot "sendcard" to get a card, type into the card & tap submit, catc
 
 - Inspired a bit by SwiftUI: https://developer.apple.com/xcode/swiftui/
 
-![sb](https://github.com/valgaze/speedybot-mini/blob/deploy/docs/assets/demo_sendcard.gif)
+![sb](https://github.com/valgaze/speedybot-mini/raw/deploy/docs/assets/demo_sendcard.gif)
 
 <details>
 <summary>(Tap to see code)</summary>
@@ -181,7 +214,7 @@ CultureBot.contains("sendcard", async ($bot, msg) => {
 
 ex. Tell the bot "chips" to get a card with tappable "chips"
 
-![sb](https://github.com/valgaze/speedybot-mini/blob/deploy/docs/assets/demo_chips.gif)
+![sb](https://github.com/valgaze/speedybot-mini/raw/deploy/docs/assets/demo_chips.gif)
 
 <details>
 <summary>(Tap to see code)</summary>

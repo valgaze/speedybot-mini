@@ -28,7 +28,7 @@ npm i
 
 ## 4) Add your bot token
 
-From the same directory as the repo run the following command to add a secret called `BOT_TOKEN` and enter your info
+From the same directory as the repo run the following command to add a secret called `BOT_TOKEN` and enter your info using **[secrets manager](https://blog.cloudflare.com/workers-secrets-environment/#supporting-secrets)**
 
 ```sh
 npx wrangler secret put BOT_TOKEN

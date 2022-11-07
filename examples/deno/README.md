@@ -36,13 +36,15 @@ Or access directly here: **[index.ts](https://github.com/valgaze/speedybot-mini/
 
 ## 4) Open the Deno "playground"
 
+- We're going to take a shortcut and use Deno's convenient + fast **[Playgrounds](https://deno.com/deploy/docs/playgrounds)**. If you're looking for a proper project with github integrations and all the rest see **[these docs for details](https://deno.com/deploy/docs/deployments#git-integration)**
+
 - Tap the play button in the top right corner
 
 ![sb](./assets/tap_play.png)
 
 ## 5) Copy the contents of index.ts
 
-- Copy/paste the content **[index.ts](./index.ts)** into the Deno playground and update the `token` field if you haven't already
+- Copy/paste the content **[index.ts](./index.ts)** into the Deno playground and update the `token` field if you haven't already (in a "real" deployment you'd use a secrets manager)
 
 - When ready, press deploy
 

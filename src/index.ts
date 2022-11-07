@@ -8,7 +8,8 @@
  */
 export * from "./lib/payloads.types";
 export { Speedybot, Config } from "./lib/speedybot";
-export { finale } from "./lib/common";
+export { finale, logoRoll } from "./lib/common";
+export { WebhookBot } from "./lib/bot";
 
 // Types
 export { BotInst } from "./lib/bot";

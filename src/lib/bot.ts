@@ -12,7 +12,17 @@ import {
   constants,
   pickRandom,
 } from "./common";
-import { ToMessage, Card, SelfData, MessageReply } from "./payloads.types";
+import {
+  ToMessage,
+  Card,
+  SelfData,
+  MessageReply,
+  RootTrigger,
+  AA_Details,
+  Message_Details,
+  File_Details,
+} from "./payloads.types";
+import { Speedybot } from "./speedybot";
 
 export type BotConfig<T = any> = {
   env?: T;
@@ -25,6 +35,7 @@ export type BotConfig<T = any> = {
     };
   };
   url?: string;
+  SpeedybotInst: Speedybot;
 };
 
 /**
@@ -36,7 +47,6 @@ export type BotConfig<T = any> = {
  *
  */
 export class BotInst {
-  // Environment variables available to Speedybot-hub
   public roomId = "";
   private fallbackText =
     "Sorry, it appears your client does not support rendering Adaptive Cards, see here for more info: https://developer.webex.com/docs/api/guides/cards";
@@ -228,13 +238,14 @@ export class BotInst {
    *
    * You can send a string or a card
    *
-
    *
+   * ## Example
    *
    * ```ts
+   *
    * import { Speedybot } from 'speedybot-mini'
    * // 1) Initialize your bot w/ config
-   * const CultureBot = new Speedybot('tokenPlaceholder');
+   * const CultureBot = new Speedybot('__REPLACE__ME__');
    *
    * // 2) Export your bot
    * export default CultureBot;
@@ -245,9 +256,10 @@ export class BotInst {
    *  async ($bot, msg) => {
    *  $bot.dm('username@domain.com', 'Here is a secret message')
    *
-   *  $bot.dm('aaa-bbb-ccc-ddd-eee', $bot.card({title:'biscotti', subTitle:'Is it biscotti or biscotto?', chips:['biscotti','biscotto']}))
+   *  $bot.dm('aaa-bbb-ccc-ddd-eee', $bot.card({title:'biscotti', subTitle:'Is it biscotti or biscotto?' url: 'https://youtu.be/6A8W77m-ZTw?t=114', chips:['biscotti','biscotto']}))
    *
    * })
+   *
    * ```
    */
   public async dm(
@@ -296,6 +308,7 @@ export class BotInst {
     });
     return res;
   }
+
   /**
    * $bot.send, core "workhorse" utility that can send whatever you throw at it
    * roomId by default is whatever is bound to bot instance
@@ -399,7 +412,6 @@ export class BotInst {
    *
    * ![cards](media://demo_sendcard.gif)
    *
-   *
    * ```ts
    * import { Speedybot } from 'speedybot-mini'
    * // 1) Initialize your bot w/ config
@@ -415,13 +427,12 @@ export class BotInst {
    *   const cardData = $bot.card({
    *     title: "Speedybot Hub",
    *     subTitle: "Sign the paperwork",
-   *     chips: ["ping", "pong", "hi", "files"],
-   *     image: "https://i.imgur.com/LybLW7J.gif",
-   *     url: "https://github.com/valgaze/speedybot-hub"
+   *     chips: ["ping", "pong", "hi",],
+   *     image: "https://github.com/valgaze/speedybot-mini/raw/deploy/docs/assets/logo.png?raw=true",
+   *     url: "https://github.com/valgaze/speedybot-mini"
    *   });
    *   $bot.send(cardData);
    *  })
-   *
    *
    * ```
    */
@@ -563,9 +574,7 @@ export class BotInst {
 
   /**
    * Temporary card that you can stash away data and destroy
-   * @param secret
    *
-   * @param message
    *
    * ```ts
    *
@@ -667,6 +676,14 @@ export class BotInst {
       .split("=")[1]
       .replace(/\"/g, "");
     const extension = fileName.split(".").pop() || "";
+
+    console.log(`
+    ##
+
+    - fileName: ${fileName}
+    - extension: ${extension}
+    
+    `);
     // data could be binary if user needs it
     const shouldProbablyBeArrayBuffer =
       (!type.includes("json") && !type.includes("txt")) ||
@@ -680,8 +697,16 @@ export class BotInst {
         data = {};
       }
     } else {
-      // should we not presume json?
-      data = await res.json();
+      try {
+        // should we not presume json?
+        data = await res.json();
+      } catch (e) {
+        try {
+          data = await res.text();
+        } catch (e) {
+          data = {};
+        }
+      }
     }
 
     let markdownSnippet = `***No markdown preview available for ${type}***`;
@@ -885,15 +910,91 @@ export class BotInst {
   }
 
   /**
+   *
+   * Trigger handler matching as if entered by the user
+   *
+   * This will not trigger .every or .noMatch handlers
+   *
+   * **Note:** The ```msg``` parameter of matched handler function will refer to the original message
+   *
+   * ## Example
+   *
+   * ```ts
+   *
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot('__REPLACE__ME__');
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+   *  $bot.send('This is the hi greeting handler!')
+   * })
+   *
+   * CultureBot.contains('trigger', async ($bot, msg) => {
+   *  $bot.send('About to trigger the hi trigger')
+   *  $bot.trigger('hi', msg)
+   * })
+   *
+   * ```
+   */
+  public async trigger(
+    text: string,
+    msg:
+      | (RootTrigger<Message_Details> & { text: string })
+      | (RootTrigger<File_Details> & { text?: string })
+      | RootTrigger<AA_Details>
+  ) {
+    // We need a clever way to wire in host speedybot dab-nabbit
+    const speedyRef = this.config.SpeedybotInst;
+
+    const handlerRef = speedyRef.processText(text, true);
+    const decoratedMessage = Object.assign(msg, { text });
+    if (handlerRef) {
+      return await handlerRef(this, decoratedMessage);
+    }
+    return 0;
+  }
+
+  /**
    * Send a message with a reply
    *
-   * Restrictions :(
-   * - Only 1st message can be a card
-   * - Replies can only be strings
    * @param thread
    * ex
    * $bot.thread([$bot.card().setTitle('hello world!').setChips(['a','b','c']), 'Pick one of the above!'])
    *
+   */
+
+  /**
+   *
+   * Send a message and attach replies
+   *
+   * Current Limitations :(
+   * - Only 1st message can be a card
+   * - Replies can only be strings
+   * - With more than 2-3 replies, order is not guaranteed (replies can arrive out of order)
+   *
+   * ## Example
+   *
+   * ```ts
+   *
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot('__REPLACE__ME__');
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+   *   $bot.thread([$bot.card().setTitle('hello world!').setChips(['a','b','c']), 'Pick one of the above!', 'Come on do it!'])
+   * })
+   *
+   * ```
    */
   public async thread(
     thread: [string | SpeedyCard, ...Array<string | ToMessage>]
@@ -924,7 +1025,7 @@ export class BotInst {
    * Translate a string based on provided locale config
    *
    * ```ts
-   * // locale data (gets specified into Speedybot-hub config)
+   * // locale data (gets specified into Speedybot config)
    * const locales = {
    *  en: {
    *    greetings: {
@@ -958,9 +1059,9 @@ export class BotInst {
    *
    * CultureBot.contains(["hi", "hey"],
    *  async ($bot, msg) => {
-   *    const eng = $bot.translate('en', 'greetings.welcome')
-   *    const esp = $bot.translate('es', 'greetings.welcome')
-   *    const chn = $bot.translate('cn', 'greetings.welcome')
+   *    const eng = $bot.translate('en', 'greetings.welcome') // 'Hello!!'
+   *    const esp = $bot.translate('es', 'greetings.welcome') // 'hola!!'
+   *    const chn = $bot.translate('cn', 'greetings.welcome') // '你好'
    *    const fallback = $bot.translate('whoops_doesnt_exist', 'greetings.welcome', 'Hey there fallback!')
    *    $bot.send(`${eng}, ${esp}, ${chn}, ${fallback}`)
    * })
@@ -1084,7 +1185,7 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
       markdown: clearScreen,
       text: clearScreen,
     };
-    this.send(payload);
+    return this.send(payload);
   }
 
   /**
@@ -1162,8 +1263,6 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * Traverse a property lookup path on a object
    * fallback to a value (if provided) whenever
    * path is invalid
-   *
-   *
    *
    * ```ts
    * import { Speedybot } from 'speedybot-mini'
@@ -1390,6 +1489,32 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * @param noBold
    * @returns markdown click'able link
    */
+
+  /**
+   *
+   * Creates a markdown bolded hyperlink
+   *
+   * ## Example
+   *
+   * ```ts
+   *
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot('__REPLACE__ME__');
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+   *  const link = $bot.buildLink('https://youtu.be/6A8W77m-ZTw?t=114')
+   *  $bot.send('Is it biscotti or biscotto?')
+   * })
+   *
+   * ```
+   *
+   */
   public buildLink(target: string, label?: string, noBold = false): string {
     // '[🍦 Talk to "Treatbot" & order iecream](webexteams://im?email=treatbot@webex.bot)'
     let link = `[${label || target}](${target})`;
@@ -1407,6 +1532,34 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * @param noBold
    * @returns
    */
+
+  /**
+   *
+   * Generate a meeting hyperlink to open a meeting with a person
+   *
+   * ## Example
+   *
+   * ```ts
+   *
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot('__REPLACE__ME__');
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+   *  const email = 'joe@joe.com'
+   *  const label = 'Click here to talk to Joe'
+   *  const link = $bot.buildMeetingLink(email, label)
+   *  $bot.send(link)
+   * })
+   *
+   * ```
+   *
+   */
   public buildMeetingLink(
     target: string,
     label?: string,
@@ -1414,14 +1567,32 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
   ): string {
     return this.buildLink(`webexteams://meet?sip=${target}`, label, noBold);
   }
-
   /**
    *
-   * Build a markdown, click'able link to a specific person (1-1 space)
-   * @param target (email)
-   * @param label
-   * @param noBold
-   * @returns
+   * Generate a hyperlink to send a message to a person/agent
+   *
+   * ## Example
+   *
+   * ```ts
+   *
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot('__REPLACE__ME__');
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+   *  const email = 'joe@joe.com'
+   *  const label = 'Send a message to Joe'
+   *  const link = $bot.buildImLink(email, label)
+   *  $bot.send(link)
+   * })
+   *
+   * ```
+   *
    */
   public buildImLink(target: string, label?: string, noBold = false): string {
     // **[aa](http://www.google.com)**
@@ -1437,6 +1608,34 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
    * @param noBold
    * @returns
    */
+
+  /**
+   *
+   * Generate a hyperlink to a space/room
+   *
+   * ## Example
+   *
+   * ```ts
+   *
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot('__REPLACE__ME__');
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+   *  const roomId = 'Y2lzY29zL3ajsLpmVzL1JPT00vNTBjNma'
+   *  const label = 'Go to the special space'
+   *  const link = $bot.buildSpaceLink(roomId, label)
+   *  $bot.send(link)
+   * })
+   *
+   * ```
+   *
+   */
   public buildSpaceLink(
     target: string,
     label?: string,
@@ -1446,35 +1645,6 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
     return this.buildLink(`webexteams://im?space=${target}`, label, noBold);
   }
 
-  /**
-   *
-   * Send a url wrapped in a card
-   *
-   *
-   *```ts
-   * import { Speedybot } from 'speedybot-mini'
-   * // 1) Initialize your bot w/ config
-   * const CultureBot = new Speedybot('tokenPlaceholder');
-   *
-   * // 2) Export your bot
-   * export default CultureBot;
-   *
-   * // 3) Do whatever you want!
-   *
-   * CultureBot.contains(["hi", "hey"],
-   *  async ($bot, msg) => {
-   *   const utterances = [
-   *     'Howdy $[name], here is a $[flavor]',
-   *     '$[name], one $[flavor] ice cream for you',
-   *   ]
-   *   const template = { name: 'Joe', flavor: 'strawberry' }
-   *   $bot.sendTemplate(utterances, template)
-
-   *  })
-   * ```
-   * 
-   * ```
-   */
   //Aliases
   /**
    * Legacy alias for $bot.send

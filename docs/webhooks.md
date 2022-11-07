@@ -1,5 +1,7 @@
 ## Webhooks
 
+Note: If you don't want to worry about webhooks at all, see the zero-config **[websockets example](./../examples/websockets/README.md)**
+
 - **[Register Webhooks](#register-webhooks)**
 - **[webhooks Security + Secrets](#webhook-secrets)**
 - **[Using nodejs crypto](#nodejs)**
@@ -7,7 +9,7 @@
 
 ## Register Webhooks
 
-Once you have a server/worker/whatever running your agent, you'll need to setup webhooks so chat traffic can reach your agent
+Once you have a server/worker/whatever running your agent, you'll need to setup webhooks so chat traffic can reach your agent.
 
 - Set up webhooks with **[speedybot garage 🔧🤖](https://codepen.io/valgaze/pen/MWVjEZV)**
 
