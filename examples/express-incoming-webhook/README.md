@@ -57,7 +57,9 @@ npm start
 
 ## 6) Take it for a spin
 
-Add your bot from Step 1 in a 1-1 chat session and tell it "hi"-- if everything is configured properly you get a rich response
+Add your bot from Step 1 in a 1-1 chat session take it for a spin & say "hi" or "healthcheck"-- if everything is configured properly you should get a rich response
+
+![image](./../../docs/assets/first_spin.gif)
 
 ## 7) Make a POST request to your bot's incoming webhook
 
@@ -73,4 +75,12 @@ Post to `/incoming_webhook` with the following payload
 }
 ```
 
-- You can make as many other webhooks as you want and alert people & rooms
+- You can make as many other webhooks as you need and alert people & rooms
+
+## Webhook Secret
+
+- Use a webhook secret to secure your agent, **[webhook details here](./../../docs/webhooks.md#webhook-secrets)**
+
+- Register your webhooks using a secret with **[speedybot bot-garage 🔧🤖](https://codepen.io/valgaze/full/MWVjEZV)**
+
+- In **[index.ts](./index.ts)** find the variable `webhookSecret` and pass in your webhook secret in whatever manner you prefer for your infrastructure (ie **[dotenv](https://www.npmjs.com/package/dotenv)** or any number of secrets managers.)

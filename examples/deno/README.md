@@ -56,9 +56,23 @@ Or access directly here: **[index.ts](https://github.com/valgaze/speedybot-mini/
 
 ![sb](./assets/register_webhooks.gif)
 
-## 7) Test your bot
+## 7) Take it for a spin
 
-![sb](./../../docs/assets/demo_chips.gif)
+- After connecting webhooks, take it for a spin
+
+![image](./../../docs/assets/first_spin.gif)
+
+## Webhook Secret
+
+- Use a webhook secret to secure your agent, **[webhook details here](./../../docs/webhooks.md#webhook-secrets)**
+
+- Register your webhooks using a secret with **[speedybot bot-garage 🔧🤖](https://codepen.io/valgaze/full/MWVjEZV)**
+
+- From the same directory as the repo run the following command to add a secret called `WEBHOOK_SECRET` and use the same secret value used when registering webhooks:
+
+```sh
+npx wrangler secret put WEBHOOK_SECRET
+```
 
 ## Resources
 

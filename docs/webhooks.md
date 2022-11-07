@@ -7,7 +7,7 @@
 
 ## Register Webhooks
 
-Once you have a server/worker/whatever running your bot, you need to set up Webhooks which will send chat traffic to a publically-addressable URL
+Once you have a server/worker/whatever running your agent, you'll need to setup webhooks so chat traffic can reach your agent
 
 - Set up webhooks with **[speedybot garage 🔧🤖](https://codepen.io/valgaze/pen/MWVjEZV)**
 
@@ -15,88 +15,32 @@ Once you have a server/worker/whatever running your bot, you need to set up Webh
 
 ## Webhook secrets
 
-If you add a secret when creating a webhook, you will received a hashed version of the request body under the header **X-Spark-Signature**
+To help secure your agent, you can add a "secret" when creating webhooks.
 
-Using your secret, you can hash the request body and compare the result with what you receive in X-Spark-Signature. If it does not match, discard the request and do not pass it forward into Speedybot
+If you add a secret when creating a webhook on each incoming request will receive a hashed version of the request body under the header **X-Spark-Signature**
 
-## More details on webhook secrets
+**Bottom line:** DO THIS. With your webhook secret you can take SHA-1 representation of the request body and if it matches the signature on the header proceed otherwise simply discard the request.
 
-- https://developer.webex.com/blog/using-a-webhook-secret
-- https://community.cisco.com/t5/collaboration-blogs/using-a-webhook-secret/ba-p/3662176
-- https://blogs.cisco.com/learning/chatops-how-to-secure-your-webex-bot
+Note: All of the samples in the **[examples directory](./../examples/)** of this repo have reference implementations of validating webhooks appropriate to each platform
 
 ## Reference implementations
 
-Combining requestBody and secret should yield the signature below
-
-```ts
-const requestBody = {
-  data: {
-    a: 1,
-    b: 2,
-    c: {
-      d: 3,
-    },
-  },
-  signature: "01e0cb6a53731b9615b483335d77d97023410c72",
-};
-const secret = "myBongoSecret";
-```
-
 ## NodeJS
 
-<details>
-  <summary>NodeJS</summary>
-  
 ```js
-
 const crypto = require("crypto");
 
 // validate signature
 const validateSignature = (secret, signature, requestData) => {
+  const hmac = crypto.createHmac("sha1", secret);
+  if (typeof requestData === "string") {
+    hmac.update(requestData);
+  } else {
+    hmac.update(JSON.stringify(requestData));
+  }
 
-    const hmac = crypto.createHmac("sha1", secret);
-    if (typeof requestData === "string") {
-        hmac.update(requestData);
-    } else {
-        hmac.update(JSON.stringify(requestData));
-    }
-
-    const isValid = hmac.digest("hex") === signature;
-    return isValid;
-};
-
-const requestBody = {
-    data: {
-        a: 1,
-        b: 2,
-        c: {
-            d: 3,
-        },
-    },
-    signature: "01e0cb6a53731b9615b483335d77d97023410c72",
-};
-const secret = "myBongoSecret";
-
-const res = validateSignature(secret, requestBody.signature, requestBody.data);
-
-console.log("# is valid?", res);
-```
-</details>
-
-## Web Cryto (for "Workers", V8 Isolates)
-
-<details>
-  <summary>Web Crypto</summary>
-
-```js
-// TODO
-// https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest
-
-// validate signature
-const validateSignature = (secret, signature, requestData) => {
-    let isValid = false
-    return isValid;
+  const isValid = hmac.digest("hex") === signature;
+  return isValid;
 };
 
 const requestBody = {
@@ -113,7 +57,65 @@ const secret = "myBongoSecret";
 
 const res = validateSignature(secret, requestBody.signature, requestBody.data);
 
-console.log("# is valid?", res);
-````
+console.log("is valid?", res);
+```
 
-</details>
+## Web Crypto (for "Workers", V8 Isolates)
+
+```js
+const validateSignature = async (secret, signature, requestData) => {
+  const stringyBody =
+    typeof requestData !== "string" ? JSON.stringify(requestData) : requestData;
+  const algo = {
+    name: "HMAC",
+    hash: "SHA-1",
+  };
+  const enc = {
+    name: "UTF-8",
+  };
+  const hmacKey = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(secret),
+    algo,
+    false,
+    ["sign"]
+  );
+  const hmacData = await crypto.subtle.sign(
+    algo,
+    hmacKey,
+    new TextEncoder().encode(stringyBody)
+  );
+
+  const bufferToHex = (buffer) => {
+    return Array.prototype.map
+      .call(new Uint8Array(buffer), (x) => ("00" + x.toString(16)).slice(-2))
+      .join("");
+  };
+  const hmacDataHex = bufferToHex(hmacData);
+  return hmacDataHex === signature;
+};
+
+const requestBody = {
+  data: {
+    a: 1,
+    b: 2,
+    c: {
+      d: 3,
+    },
+  },
+  signature: "01e0cb6a53731b9615b483335d77d97023410c72",
+};
+const secret = "myBongoSecret";
+
+const res = validateSignature(
+  secret,
+  requestBody.signature,
+  requestBody.data
+).then((val) => console.log("is valid?", val));
+```
+
+## Resources
+
+- https://developer.webex.com/blog/using-a-webhook-secret
+- https://community.cisco.com/t5/collaboration-blogs/using-a-webhook-secret/ba-p/3662176
+- https://blogs.cisco.com/learning/chatops-how-to-secure-your-webex-bot

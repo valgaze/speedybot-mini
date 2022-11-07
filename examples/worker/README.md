@@ -26,7 +26,7 @@ npm i
 
 - Create a new "worker" from the **[cloudflare dashboard](https://dash.cloudflare.com)** & note its URL (you can name it something like https://speedybot1234.username.workers.dev)
 
-## 4) Add your bot token "secret"
+## 4) Add your bot token
 
 From the same directory as the repo run the following command to add a secret called `BOT_TOKEN` and enter your info
 
@@ -57,3 +57,15 @@ npm run deploy
 - After connecting webhooks, take it for a spin
 
 ![image](./../../docs/assets/first_spin.gif)
+
+## Webhook Secret
+
+- Use a webhook secret to secure your agent, **[webhook details here](./../../docs/webhooks.md#webhook-secrets)**
+
+- Register your webhooks using a secret with **[speedybot bot-garage 🔧🤖](https://codepen.io/valgaze/full/MWVjEZV)**
+
+- From the same directory as the repo run the following command to add a secret called `WEBHOOK_SECRET` and use the same secret value used when registering webhooks:
+
+```sh
+npx wrangler secret put WEBHOOK_SECRET
+```

@@ -26,6 +26,25 @@ export default CultureBot;
 
 // 3) Do whatever you want!
 
+CultureBot.contains("healthcheck", ($bot) => {
+  // Adapative Card: https://developer.webex.com/docs/api/guides/cards
+  const card = $bot
+    .card({
+      title: "System is 👍",
+      subTitle: "If you see this card, everything is working",
+      image:
+        "https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/chocolate_chip_cookies.png",
+      url: "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      urlLabel: "Take a moment to celebrate",
+      table: [[`Bot's Date`, new Date().toDateString()]],
+    })
+    .setInput(`What's on your mind?`)
+    .setData({ mySpecialData: { a: 1, b: 2 } })
+    .setChoices(["option a", "option b", "option c"]);
+
+  $bot.send(card);
+});
+
 CultureBot.contains("chips", async ($bot, msg) => {
   $bot.send(
     $bot
@@ -262,5 +281,5 @@ CultureBot.every(async ($bot, msg) => {
 
 // If no matched handlers
 CultureBot.noMatch(($bot, msg) => {
-  $bot.say(`Bummer, there was no matching handler for '${msg.text}`);
+  $bot.say(`Bummer, there was no matching handler for '${msg.text}'`);
 });
