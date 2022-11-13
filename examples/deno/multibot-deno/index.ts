@@ -8,7 +8,7 @@ import { serve } from "https://deno.land/std/http/mod.ts";
 import {
   Speedybot,
   finale,
-} from "https://cdn.skypack.dev/speedybot-mini@2.0.2";
+} from "https://cdn.skypack.dev/speedybot-mini@2.0.3";
 
 async function reqHandler(req: Request) {
   if (req.method === "GET") {

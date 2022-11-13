@@ -1,14 +1,3 @@
-/**
- *
- * 1. speedybot 2.0: feature-parity, etc, speedybot-voiceflow to 2.0
- * 2. speedybot-workers (fork to work w/ cloudflare workers/v8 isolates, location experimental)
- * 3. speedybot-lambda << Repo
- * 4. Visual web ui to guide you through boom.
- *
- */
-// Rule: we lowercase input message for contains
-// .contains(), if lower-cased input contains target
-// .nlu to send to voiceflow integrated
 import {
   ENVELOPES,
   Message_Details,
@@ -52,7 +41,7 @@ export type Config = {
   fallbackText?: string; // tie this to locale?
 };
 
-export type HandlerFunc<T = any> = (
+export type GenericHandlerFunc<T = any> = (
   $bot: BotInst,
   msg: any
 ) => Promise<T | void> | T;
@@ -66,6 +55,12 @@ export type FileHandlerFunc<F = any> = (
 export type SubmitHandler = (
   $bot: BotInst,
   msg: AAHandler
+) => Promise<void> | void;
+
+export type NLUHandlerFunc<F = any> = (
+  $bot: BotInst,
+  msg: RootTrigger<Message_Details> & { text: string },
+  api: CoreMakerequest
 ) => Promise<void> | void;
 
 export class Speedybot {
@@ -88,7 +83,7 @@ export class Speedybot {
   };
 
   constructor(
-    config: Config | string,
+    config?: Config | string,
     private makeRequest: CoreMakerequest = RequesterFunc
   ) {
     if (typeof config === "string") {
@@ -104,34 +99,104 @@ export class Speedybot {
   private rootList: RootList = [];
   public FileHandler: FileHandlerFunc | null = null;
   private handlers: {
-    camera: null | HandlerFunc;
-    file: null | HandlerFunc;
-    submit: null | HandlerFunc;
-    NO_MATCH: null | HandlerFunc;
-    ALL: null | HandlerFunc;
-
-    [key: string]: HandlerFunc | null;
+    camera: null | GenericHandlerFunc;
+    file: null | GenericHandlerFunc;
+    submit: null | GenericHandlerFunc;
+    NO_MATCH: null | GenericHandlerFunc;
+    ALL: null | GenericHandlerFunc;
+    [key: string]: GenericHandlerFunc | null;
   } = {
     camera: null,
     file: null,
     submit: null,
+    nlu: null,
     NO_MATCH: null,
     ALL: null,
   };
+  private nluHandler: null | NLUHandlerFunc = null;
 
-  private checkStrings(a: string, incoming: string, exact = false) {
-    if (exact) return a === incoming;
-    const [first] = incoming.toLowerCase().split(" ");
-    return first === a.toLocaleLowerCase();
-
-    // return incoming.toLowerCase().includes(a.toLowerCase());
+  private checkStrings(
+    check: string,
+    incoming: string,
+    flag?: { exact?: boolean; fuzzy?: boolean }
+  ) {
+    const { exact = false, fuzzy = false } = flag || {};
+    if (exact) return check === incoming;
+    if (fuzzy) return incoming.toLowerCase().includes(check.toLowerCase());
+    const [first] = incoming.toLowerCase().split(" "); // Check first word of input phrases for "commands" pattern, ex /check order me a new coffee
+    return first === check.toLocaleLowerCase();
   }
 
   /**
-   * Register a handler that matches on a string or list of strings
-   * @param keyword
    *
-   * @param cb
+   * Register a handler that "fuzzily" matches input from a user
+   *
+   * Any fuzzy matches occur **anywhere** in the input from the user (if you want only the 1st word see {@link Speedybot.contains})
+   *
+   *
+   * ```ts
+   *
+   * // This agent will match for ex.  hi, hi!!, here is a sentence hi and bye
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot(config);
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.fuzzy(["hi", "hey"], async ($bot, msg) => {
+   *   $bot.send('You matched!')
+   * })
+   * ```
+   */
+  public fuzzy(keyword: string | string[], cb: MsgHandler) {
+    // Aliases to regex
+    const nextIdx = this.rootList.length;
+    // 1) attach handlers
+    this.handlers[nextIdx] = cb;
+
+    // 2) attach to search
+    if (typeof keyword === "string") {
+      this.rootList.push({ FUZZY: keyword.toLowerCase() });
+    } else {
+      const payload = keyword.map((kw) => {
+        return { FUZZY: kw.toLowerCase() };
+      });
+      //@ts-ignore
+      this.rootList.push(payload);
+    }
+  }
+
+  /**
+   *
+   * Register a handler thats matches on a string or list of strings
+   *
+   *  Note: This will match if the target phrase is the 1st or only word in a sentence
+   *
+   * **Important:** If you want to match on the input phrase located *anywhere* in an input phrase,
+   * use .fuzzy. If .fuzzy and .contains contain the same matching word, the first registered handler will take precedence
+   * Any fuzzy matches occur **anywhere** in the input from the user (if you want only the 1st word see .contains)
+   *
+   *
+   * ```ts
+   *
+   * // This agent will match for ex.  hi, hey how's it going, hey
+   * // Will not match: hi!!, heya how are you?
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot(config);
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+   *   $bot.send('You matched!')
+   * })
+   * ```
    */
   public contains(keyword: string | string[], cb: MsgHandler) {
     // Aliases to regex
@@ -146,21 +211,169 @@ export class Speedybot {
     }
   }
 
+  /**
+   *
+   * Register a handler thats matches on a string **exactly**
+   *
+   *  Note: This will match if the target phrase has a case-sensitive match
+   *
+   *
+   * ```ts
+   *
+   * // This agent will match for only 'Hi'
+   * // Will not match: hi, hi!!, heya how are you?
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot(config);
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.exact("hi", async ($bot, msg) => {
+   *   $bot.send('You matched!')
+   * })
+   * ```
+   */
   public exact(keyword: string, cb: MsgHandler) {
     // Aliases to regex
     this.handlers[this.rootList.length] = cb;
     this.rootList.push({ EXACT: keyword });
   }
 
+  /**
+   *
+   * 🌟SPECIAL🌟 Conversational Design convenience handler
+   *
+   * Use this handler to send user input to a NLP/NLU
+   *
+   * Any registered keywords handled with your agent will be ignored and not sent to the NLU system
+   *
+   * ```ts
+   *
+   * // This agent will match for ping, pong, anything else will be sent to a
+   * // 3rd-party service for content and conversation design
+   *
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot(config);
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.contains(["ping","pong"], async ($bot, msg) => {
+   *   $bot.send('You matched!')
+   * })
+   *
+   *
+   * CultureBot.nlu("hi", async ($bot, msg, api) => {
+   *   const payload = await api('https://www.nluservice.com', { text: msg.text }, )
+   *   const res = await payload.text()
+   *   $bot.send(`Response: ${text}`)
+   * })
+   *
+   * ```
+   */
+  public nlu(cb: NLUHandlerFunc) {
+    this.nluHandler = cb;
+  }
+
+  /**
+   *
+   * Register a handler thats matches based on a Regular Expression
+   *
+   * ```ts
+   *
+   * // This agent will match for only 'Hi'
+   * // Will not match: hi, hi!!, heya how are you?
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot(config);
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.regex(new RegExp('x'), async ($bot, msg) => {
+   *   $bot.send('You matched because you said a word containing x!')
+   * })
+   * ```
+   *
+   */
   public regex(rx: RegExp, cb: MsgHandler) {
     this.handlers[this.rootList.length] = cb;
     this.rootList.push(rx);
   }
 
+  /**
+   *
+   * Register a handler when there is no matching handler for a user's input
+   *
+   * If you're not using an NLU system, it's a good idea to acknowledge a user's
+   * request isn't servicable rather than leaving them hanging
+   *
+   * ```ts
+   *
+   * // This agent will match for only 'Hi'
+   * // Will not match: hi, hi!!, heya how are you?
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot(config);
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.noMatch(async ($bot, msg) => {
+   *   $bot.send(`Bummer, no match for ${msg.text}`)
+   * })
+   * ```
+   *
+   */
   noMatch(handler: MsgHandler) {
     this.handlers["NO_MATCH"] = handler;
   }
 
+  /**
+   *
+   * Register a handler that runs on **EVERY** message sent to an agent
+   * Note: You can optionally pass in a list of keywords to skip
+   *
+   * ```ts
+   *
+   * // This agent will match for only 'Hi'
+   * // Will not match: hi, hi!!, heya how are you?
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot(config);
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   *
+   * CultureBot.contains(['bingo', 'bongo'], ($bot, msg) => {
+   *  if (msg.text === 'bingo') {
+   *    $bot.send('bongo')
+   *  } else {
+   *    $bot.send('bingo')
+   *  }
+   * })
+   *
+   * // Run on every input except the words 'bingo' and 'bongo'
+   * CultureBot.every(async ($bot, msg) => {
+   *   $bot.send('You matched because you said a word containing x!')
+   * }).config({skipList: ['bingo', 'bongo']})
+   *
+   * ```
+   *
+   */
   every(handler: MsgHandler, skipList: string[] = []) {
     this.handlers["ALL"] = handler;
     if (skipList.length) {
@@ -181,15 +394,15 @@ export class Speedybot {
   }
 
   private setConfig<T = any>(route: string, data: T) {
-    //@ts-ignore
-    this._config.features[route] = data;
+    if (this._config && this._config.features) {
+      this._config.features[route] = data;
+    }
   }
 
   /**
    * Camera handler-- will trigger by default for png, jpeg, & jpg
    * @param handler
    *
-   * ### Example
    * ```ts
    * import { Speedybot } from "speedybot-mini";
    * // 1) Initialize your bot
@@ -209,9 +422,38 @@ export class Speedybot {
     this.setHandler("camera", handler);
   }
 
-  setHandler(handlerType: string, handler) {
+  private setHandler(handlerType: string, handler) {
     this.handlers[handlerType] = handler;
   }
+
+  /**
+   *
+   * Register a handler when a user uploads a file to an agent
+   *
+   * With optional confi
+   * - matchText: boolean-- should any text attached to file upload also be processed? (default false)
+   * - excludeFiles: string[]-- any files not to exclude from handling
+   *
+   * ```ts
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot(config);
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.onFile(async ($bot, msg, fileData) => {
+   *    const { fileName, extension, type } = fileData;
+   *    $bot.send(`You sent a file: ${fileName} ${extension} ${type}`);
+   *    // file data available under fileData.data
+   * }).config({matchText: true})
+   *
+   *
+   * ```
+   *
+   */
   onFile(handler: FileHandlerFunc) {
     this.setHandler("file", handler);
     const ref = this;
@@ -227,6 +469,41 @@ export class Speedybot {
     };
   }
 
+  /**
+   *
+   * Register a handler when a user sends data from an Adaptive Card. Any attached data will be available under `msg.data.inputs`
+   *
+   *
+   * In the example below this is the data available on card submission: `{"cardName":"mySpecialCard7755","inputData":"My opinion is 123"}`:
+   *
+   *
+   * ```ts
+   * import { Speedybot } from 'speedybot-mini'
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot(config);
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.contains("card", ($bot) => {
+   *  $bot.send('Here is a card to share your opinion')
+   *  $bot.send(
+   *  $bot
+   *    .card({ title: "Here is a card" })
+   *    .setData({ cardName: "mySpecialCard7755" })
+   *    .setInput("What is your opinion?")
+   *  );
+   *
+   * })
+   *
+   * CultureBot.onSubmit(async ($bot, msg, fileData) => {
+   *   $bot.send(`You submitted ${JSON.stringify(msg.data.inputs)}`);
+   * })
+   * ```
+   *
+   */
   onSubmit(handler: AAHandler) {
     this.setHandler("submit", handler);
     const ref = this;
@@ -275,6 +552,7 @@ export class Speedybot {
       token: this.getToken(),
       roomId: roomId,
       locales: this._config.locales,
+      SpeedybotInst: this,
     };
 
     if (type === "TEXT" || type === "FILE") {
@@ -339,6 +617,18 @@ export class Speedybot {
         ) {
           await catchall(new BotInst(bot_config), { ...botTrigger, text });
         }
+
+        const nlu = this.nluHandler;
+        // If any words are registered, don't send to NLU
+        const skip = this.checkList(text) > -1;
+
+        if (nlu && !skip) {
+          await nlu(
+            new BotInst(bot_config),
+            { ...botTrigger, text },
+            this.makeRequest
+          );
+        }
       }
     }
 
@@ -398,7 +688,29 @@ export class Speedybot {
    *
    *
    */
-  processText(incoming: string = "") {
+  processText(incoming: string = "", skipNoMatchFallback = false) {
+    const target = this.checkList(incoming);
+    // if catchall (useful for NLU) runs
+    if (target >= 0) {
+      return this.handlers[target] &&
+        typeof this.handlers[target] === "function"
+        ? this.handlers[target]
+        : null;
+    } else if (this.handlers["NO_MATCH"]) {
+      return typeof this.handlers["NO_MATCH"] === "function" &&
+        !skipNoMatchFallback
+        ? this.handlers["NO_MATCH"]
+        : null;
+    }
+    return null;
+  }
+
+  /**
+   * Returns look up index of matching handler if one exists
+   * @param incoming
+   * @returns
+   */
+  private checkList(incoming = ""): number {
     let target = -1;
     this.rootList.forEach((item, idx) => {
       let match = false;
@@ -407,8 +719,13 @@ export class Speedybot {
       }
       if (typeof item === "object" && "EXACT" in item) {
         const { EXACT } = item;
-        match = this.checkStrings(EXACT, incoming, true);
+        match = this.checkStrings(EXACT, incoming, { exact: true });
       }
+      if (typeof item === "object" && "FUZZY" in item) {
+        const { FUZZY } = item;
+        match = this.checkStrings(FUZZY, incoming, { fuzzy: true });
+      }
+
       // Slowwwwwww
       if (item instanceof RegExp) {
         match = item.test(incoming.toLowerCase());
@@ -426,6 +743,12 @@ export class Speedybot {
               match = this.checkStrings(kw, incoming);
             } else if (kw instanceof RegExp) {
               match = kw.test(incoming.toLowerCase());
+            } else if ("EXACT" in kw) {
+              const { EXACT } = kw;
+              match = this.checkStrings(EXACT, incoming, { exact: true });
+            } else if ("FUZZY" in kw) {
+              const { FUZZY } = kw;
+              match = this.checkStrings(FUZZY, incoming, { fuzzy: true });
             }
             if (match) {
               target = idx;
@@ -434,19 +757,7 @@ export class Speedybot {
         });
       }
     });
-
-    // if catchall (useful for NLU) runs
-
-    if (target >= 0) {
-      return this.handlers[target] &&
-        typeof this.handlers[target] === "function"
-        ? this.handlers[target]
-        : null;
-    } else if (this.handlers["NO_MATCH"]) {
-      return typeof this.handlers["NO_MATCH"] === "function"
-        ? this.handlers["NO_MATCH"]
-        : null;
-    }
+    return target;
   }
 
   public async actionHandler(details: AA_Details) {
@@ -589,4 +900,5 @@ export type RootList = (
   | RegExp
   | RegExp[]
   | { EXACT: string }
+  | { FUZZY: string }
 )[];

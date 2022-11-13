@@ -19,6 +19,5 @@
     }
   },
   "include": ["src/**/*", "test/**/*", "package.json"],
-  "exclude": ["src/frontend", "node_modules", "dist"],
-  "skipLibCheck": true /* Skip type checking all .d.ts files. */
+  "exclude": ["node_modules", "dist"]
 }

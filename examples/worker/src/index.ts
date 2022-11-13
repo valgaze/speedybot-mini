@@ -7,7 +7,7 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
-import CultureBot from "./config";
+import CultureBot from "./../settings/config";
 import { validateWebhook } from "./validateWebhook";
 import { ENVELOPES, finale } from "speedybot-mini";
 export interface Env {

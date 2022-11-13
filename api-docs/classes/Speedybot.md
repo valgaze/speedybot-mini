@@ -13,6 +13,7 @@
 - [FileHandler](Speedybot.md#filehandler)
 - [\_config](Speedybot.md#_config)
 - [handlers](Speedybot.md#handlers)
+- [nluHandler](Speedybot.md#nluhandler)
 - [rootList](Speedybot.md#rootlist)
 
 ### Methods
@@ -20,6 +21,7 @@
 - [IncomingWebhooks](Speedybot.md#incomingwebhooks)
 - [actionHandler](Speedybot.md#actionhandler)
 - [buildDetails](Speedybot.md#builddetails)
+- [checkList](Speedybot.md#checklist)
 - [checkStrings](Speedybot.md#checkstrings)
 - [contains](Speedybot.md#contains)
 - [deleteMessage](Speedybot.md#deletemessage)
@@ -27,12 +29,14 @@
 - [every](Speedybot.md#every)
 - [exact](Speedybot.md#exact)
 - [exposeToken](Speedybot.md#exposetoken)
+- [fuzzy](Speedybot.md#fuzzy)
 - [getAuthor](Speedybot.md#getauthor)
 - [getData](Speedybot.md#getdata)
 - [getSelf](Speedybot.md#getself)
 - [getToken](Speedybot.md#gettoken)
 - [isEnvelope](Speedybot.md#isenvelope)
 - [isHuman](Speedybot.md#ishuman)
+- [nlu](Speedybot.md#nlu)
 - [noMatch](Speedybot.md#nomatch)
 - [onCamera](Speedybot.md#oncamera)
 - [onFile](Speedybot.md#onfile)
@@ -50,18 +54,18 @@
 
 ### constructor
 
-• **new Speedybot**(`config`, `makeRequest?`)
+• **new Speedybot**(`config?`, `makeRequest?`)
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `config` | `string` \| `Config` | `undefined` |
+| `config?` | `string` \| `Config` | `undefined` |
 | `makeRequest` | `CoreMakerequest`<`any`\> | `RequesterFunc` |
 
 #### Defined in
 
-[lib/speedybot.ts:90](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L90)
+[lib/speedybot.ts:85](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L85)
 
 ## Properties
 
@@ -71,7 +75,7 @@
 
 #### Defined in
 
-[lib/speedybot.ts:105](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L105)
+[lib/speedybot.ts:100](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L100)
 
 ___
 
@@ -81,7 +85,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:74](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L74)
+[lib/speedybot.ts:69](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L69)
 
 ___
 
@@ -91,21 +95,31 @@ ___
 
 #### Index signature
 
-▪ [key: `string`]: `HandlerFunc` \| ``null``
+▪ [key: `string`]: `GenericHandlerFunc` \| ``null``
 
 #### Type declaration
 
 | Name | Type |
 | :------ | :------ |
-| `ALL` | ``null`` \| `HandlerFunc`<`any`\> |
-| `NO_MATCH` | ``null`` \| `HandlerFunc`<`any`\> |
-| `camera` | ``null`` \| `HandlerFunc`<`any`\> |
-| `file` | ``null`` \| `HandlerFunc`<`any`\> |
-| `submit` | ``null`` \| `HandlerFunc`<`any`\> |
+| `ALL` | ``null`` \| `GenericHandlerFunc`<`any`\> |
+| `NO_MATCH` | ``null`` \| `GenericHandlerFunc`<`any`\> |
+| `camera` | ``null`` \| `GenericHandlerFunc`<`any`\> |
+| `file` | ``null`` \| `GenericHandlerFunc`<`any`\> |
+| `submit` | ``null`` \| `GenericHandlerFunc`<`any`\> |
 
 #### Defined in
 
-[lib/speedybot.ts:106](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L106)
+[lib/speedybot.ts:101](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L101)
+
+___
+
+### nluHandler
+
+• `Private` **nluHandler**: ``null`` \| `NLUHandlerFunc`<`any`\> = `null`
+
+#### Defined in
+
+[lib/speedybot.ts:116](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L116)
 
 ___
 
@@ -115,7 +129,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:104](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L104)
+[lib/speedybot.ts:99](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L99)
 
 ## Methods
 
@@ -138,7 +152,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:72](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L72)
+[lib/speedybot.ts:67](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L67)
 
 ___
 
@@ -158,7 +172,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:452](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L452)
+[lib/speedybot.ts:763](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L763)
 
 ___
 
@@ -179,21 +193,45 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:483](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L483)
+[lib/speedybot.ts:794](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L794)
 
 ___
 
-### checkStrings
+### checkList
 
-▸ `Private` **checkStrings**(`a`, `incoming`, `exact?`): `boolean`
+▸ `Private` **checkList**(`incoming?`): `number`
+
+Returns look up index of matching handler if one exists
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `a` | `string` | `undefined` |
-| `incoming` | `string` | `undefined` |
-| `exact` | `boolean` | `false` |
+| `incoming` | `string` | `""` |
+
+#### Returns
+
+`number`
+
+#### Defined in
+
+[lib/speedybot.ts:713](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L713)
+
+___
+
+### checkStrings
+
+▸ `Private` **checkStrings**(`check`, `incoming`, `flag?`): `boolean`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `check` | `string` |
+| `incoming` | `string` |
+| `flag?` | `Object` |
+| `flag.exact?` | `boolean` |
+| `flag.fuzzy?` | `boolean` |
 
 #### Returns
 
@@ -201,7 +239,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:122](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L122)
+[lib/speedybot.ts:118](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L118)
 
 ___
 
@@ -209,7 +247,31 @@ ___
 
 ▸ **contains**(`keyword`, `cb`): `void`
 
-Register a handler that matches on a string or list of strings
+Register a handler thats matches on a string or list of strings
+
+ Note: This will match if the target phrase is the 1st or only word in a sentence
+
+**Important:** If you want to match on the input phrase located *anywhere* in an input phrase,
+use .fuzzy. If .fuzzy and .contains contain the same matching word, the first registered handler will take precedence
+Any fuzzy matches occur **anywhere** in the input from the user (if you want only the 1st word see .contains)
+
+```ts
+
+// This agent will match for ex.  hi, hey how's it going, hey
+// Will not match: hi!!, heya how are you?
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot(config);
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+  $bot.send('You matched!')
+})
+```
 
 #### Parameters
 
@@ -224,7 +286,7 @@ Register a handler that matches on a string or list of strings
 
 #### Defined in
 
-[lib/speedybot.ts:136](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L136)
+[lib/speedybot.ts:201](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L201)
 
 ___
 
@@ -244,7 +306,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:462](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L462)
+[lib/speedybot.ts:773](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L773)
 
 ___
 
@@ -264,13 +326,44 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:240](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L240)
+[lib/speedybot.ts:517](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L517)
 
 ___
 
 ### every
 
 ▸ **every**(`handler`, `skipList?`): `Object`
+
+Register a handler that runs on **EVERY** message sent to an agent
+Note: You can optionally pass in a list of keywords to skip
+
+```ts
+
+// This agent will match for only 'Hi'
+// Will not match: hi, hi!!, heya how are you?
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot(config);
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.contains(['bingo', 'bongo'], ($bot, msg) => {
+ if (msg.text === 'bingo') {
+   $bot.send('bongo')
+ } else {
+   $bot.send('bingo')
+ }
+})
+
+// Run on every input except the words 'bingo' and 'bongo'
+CultureBot.every(async ($bot, msg) => {
+  $bot.send('You matched because you said a word containing x!')
+}).config({skipList: ['bingo', 'bongo']})
+
+```
 
 #### Parameters
 
@@ -289,13 +382,35 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:164](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L164)
+[lib/speedybot.ts:377](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L377)
 
 ___
 
 ### exact
 
 ▸ **exact**(`keyword`, `cb`): `void`
+
+Register a handler thats matches on a string **exactly**
+
+ Note: This will match if the target phrase has a case-sensitive match
+
+```ts
+
+// This agent will match for only 'Hi'
+// Will not match: hi, hi!!, heya how are you?
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot(config);
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.exact("hi", async ($bot, msg) => {
+  $bot.send('You matched!')
+})
+```
 
 #### Parameters
 
@@ -310,7 +425,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:149](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L149)
+[lib/speedybot.ts:239](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L239)
 
 ___
 
@@ -324,7 +439,49 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:101](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L101)
+[lib/speedybot.ts:96](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L96)
+
+___
+
+### fuzzy
+
+▸ **fuzzy**(`keyword`, `cb`): `void`
+
+Register a handler that "fuzzily" matches input from a user
+
+Any fuzzy matches occur **anywhere** in the input from the user (if you want only the 1st word see [Speedybot.contains](Speedybot.md#contains))
+
+```ts
+
+// This agent will match for ex.  hi, hi!!, here is a sentence hi and bye
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot(config);
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.fuzzy(["hi", "hey"], async ($bot, msg) => {
+  $bot.send('You matched!')
+})
+```
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `keyword` | `string` \| `string`[] |
+| `cb` | `MsgHandler` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/speedybot.ts:154](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L154)
 
 ___
 
@@ -344,7 +501,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:500](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L500)
+[lib/speedybot.ts:811](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L811)
 
 ___
 
@@ -365,7 +522,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:537](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L537)
+[lib/speedybot.ts:848](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L848)
 
 ___
 
@@ -379,7 +536,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:523](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L523)
+[lib/speedybot.ts:834](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L834)
 
 ___
 
@@ -393,7 +550,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:479](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L479)
+[lib/speedybot.ts:790](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L790)
 
 ___
 
@@ -413,7 +570,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:577](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L577)
+[lib/speedybot.ts:888](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L888)
 
 ___
 
@@ -434,13 +591,88 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:514](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L514)
+[lib/speedybot.ts:825](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L825)
+
+___
+
+### nlu
+
+▸ **nlu**(`cb`): `void`
+
+🌟SPECIAL🌟 Conversational Design convenience handler
+
+Use this handler to send user input to a NLP/NLU
+
+Any registered keywords handled with your agent will be ignored and not sent to the NLU system
+
+```ts
+
+// This agent will match for ping, pong, anything else will be sent to a
+// 3rd-party service for content and conversation design
+
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot(config);
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.contains(["ping","pong"], async ($bot, msg) => {
+  $bot.send('You matched!')
+})
+
+CultureBot.nlu("hi", async ($bot, msg, api) => {
+  const payload = await api('https://www.nluservice.com', { text: msg.text }, )
+  const res = await payload.text()
+  $bot.send(`Response: ${text}`)
+})
+
+```
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `cb` | `NLUHandlerFunc`<`any`\> |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/speedybot.ts:280](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L280)
 
 ___
 
 ### noMatch
 
 ▸ **noMatch**(`handler`): `void`
+
+Register a handler when there is no matching handler for a user's input
+
+If you're not using an NLU system, it's a good idea to acknowledge a user's
+request isn't servicable rather than leaving them hanging
+
+```ts
+
+// This agent will match for only 'Hi'
+// Will not match: hi, hi!!, heya how are you?
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot(config);
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.noMatch(async ($bot, msg) => {
+  $bot.send(`Bummer, no match for ${msg.text}`)
+})
+```
 
 #### Parameters
 
@@ -454,7 +686,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:160](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L160)
+[lib/speedybot.ts:338](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L338)
 
 ___
 
@@ -468,7 +700,7 @@ Camera handler-- will trigger by default for png, jpeg, & jpg
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `handler` | `FileHandlerFunc`<`any`\> | ### Example ```ts import { Speedybot } from "speedybot-mini"; // 1) Initialize your bot const CultureBot = new Speedybot("__REPLACE__MEE__"); // 2) Export your bot export default CultureBot;  // Add a camera handler CultureBot.onCamera(($bot, msg, fileData) => {    const { fileName, extension, type } = fileData;    $bot.send(`You sent a photo: ${fileName} ${extension} ${type}`);    // file data available under fileData.data }); ``` |
+| `handler` | `FileHandlerFunc`<`any`\> | ```ts import { Speedybot } from "speedybot-mini"; // 1) Initialize your bot const CultureBot = new Speedybot("__REPLACE__MEE__"); // 2) Export your bot export default CultureBot;  // Add a camera handler CultureBot.onCamera(($bot, msg, fileData) => {    const { fileName, extension, type } = fileData;    $bot.send(`You sent a photo: ${fileName} ${extension} ${type}`);    // file data available under fileData.data }); ``` |
 
 #### Returns
 
@@ -476,13 +708,37 @@ Camera handler-- will trigger by default for png, jpeg, & jpg
 
 #### Defined in
 
-[lib/speedybot.ts:208](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L208)
+[lib/speedybot.ts:421](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L421)
 
 ___
 
 ### onFile
 
 ▸ **onFile**(`handler`): `Object`
+
+Register a handler when a user uploads a file to an agent
+
+With optional confi
+- matchText: boolean-- should any text attached to file upload also be processed? (default false)
+- excludeFiles: string[]-- any files not to exclude from handling
+
+```ts
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot(config);
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.onFile(async ($bot, msg, fileData) => {
+   const { fileName, extension, type } = fileData;
+   $bot.send(`You sent a file: ${fileName} ${extension} ${type}`);
+   // file data available under fileData.data
+}).config({matchText: true})
+
+```
 
 #### Parameters
 
@@ -500,13 +756,43 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:215](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L215)
+[lib/speedybot.ts:457](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L457)
 
 ___
 
 ### onSubmit
 
 ▸ **onSubmit**(`handler`): `Object`
+
+Register a handler when a user sends data from an Adaptive Card. Any attached data will be available under `msg.data.inputs`
+
+In the example below this is the data available on card submission: `{"cardName":"mySpecialCard7755","inputData":"My opinion is 123"}`:
+
+```ts
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot(config);
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.contains("card", ($bot) => {
+ $bot.send('Here is a card to share your opinion')
+ $bot.send(
+ $bot
+   .card({ title: "Here is a card" })
+   .setData({ cardName: "mySpecialCard7755" })
+   .setInput("What is your opinion?")
+ );
+
+})
+
+CultureBot.onSubmit(async ($bot, msg, fileData) => {
+  $bot.send(`You submitted ${JSON.stringify(msg.data.inputs)}`);
+})
+```
 
 #### Parameters
 
@@ -524,7 +810,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:230](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L230)
+[lib/speedybot.ts:507](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L507)
 
 ___
 
@@ -546,7 +832,7 @@ Cheap way to get content-dispoition header & content-type and get extension
 
 #### Defined in
 
-[lib/speedybot.ts:571](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L571)
+[lib/speedybot.ts:882](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L882)
 
 ___
 
@@ -566,13 +852,13 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:258](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L258)
+[lib/speedybot.ts:535](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L535)
 
 ___
 
 ### processSubmit
 
-▸ **processSubmit**(`details`): `undefined` \| ``null`` \| `HandlerFunc`<`any`\>
+▸ **processSubmit**(`details`): ``null`` \| `GenericHandlerFunc`<`any`\>
 
 #### Parameters
 
@@ -582,17 +868,17 @@ ___
 
 #### Returns
 
-`undefined` \| ``null`` \| `HandlerFunc`<`any`\>
+``null`` \| `GenericHandlerFunc`<`any`\>
 
 #### Defined in
 
-[lib/speedybot.ts:374](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L374)
+[lib/speedybot.ts:664](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L664)
 
 ___
 
 ### processText
 
-▸ **processText**(`incoming?`): `undefined` \| ``null`` \| `HandlerFunc`<`any`\>
+▸ **processText**(`incoming?`, `skipNoMatchFallback?`): ``null`` \| `GenericHandlerFunc`<`any`\>
 
 If worst case (user enters text
  and we need to search for it)
@@ -605,20 +891,41 @@ Note: All queries are lower-cased
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `incoming` | `string` | `""` |
+| `skipNoMatchFallback` | `boolean` | `false` |
 
 #### Returns
 
-`undefined` \| ``null`` \| `HandlerFunc`<`any`\>
+``null`` \| `GenericHandlerFunc`<`any`\>
 
 #### Defined in
 
-[lib/speedybot.ts:401](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L401)
+[lib/speedybot.ts:691](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L691)
 
 ___
 
 ### regex
 
 ▸ **regex**(`rx`, `cb`): `void`
+
+Register a handler thats matches based on a Regular Expression
+
+```ts
+
+// This agent will match for only 'Hi'
+// Will not match: hi, hi!!, heya how are you?
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot(config);
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.regex(new RegExp('x'), async ($bot, msg) => {
+  $bot.send('You matched because you said a word containing x!')
+})
+```
 
 #### Parameters
 
@@ -633,7 +940,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:155](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L155)
+[lib/speedybot.ts:307](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L307)
 
 ___
 
@@ -660,13 +967,13 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:183](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L183)
+[lib/speedybot.ts:396](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L396)
 
 ___
 
 ### setHandler
 
-▸ **setHandler**(`handlerType`, `handler`): `void`
+▸ `Private` **setHandler**(`handlerType`, `handler`): `void`
 
 #### Parameters
 
@@ -681,7 +988,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:212](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L212)
+[lib/speedybot.ts:425](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L425)
 
 ___
 
@@ -701,4 +1008,4 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:475](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/speedybot.ts#L475)
+[lib/speedybot.ts:786](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L786)

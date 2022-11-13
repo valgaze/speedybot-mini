@@ -4,7 +4,7 @@
 
 Root bot object used in handlers-- enshrined with many convenience helpers & lessons learned the hard way
 
-![cards](media://first_spin.gif)
+![cards](../media/first_spin.gif)
 
 ## Table of contents
 
@@ -62,6 +62,7 @@ Root bot object used in handlers-- enshrined with many convenience helpers & les
 - [successCard](BotInst.md#successcard)
 - [thread](BotInst.md#thread)
 - [translate](BotInst.md#translate)
+- [trigger](BotInst.md#trigger)
 - [warningCard](BotInst.md#warningcard)
 
 ## Constructors
@@ -74,12 +75,12 @@ Root bot object used in handlers-- enshrined with many convenience helpers & les
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `config` | `BotConfig`<`any`\> | `undefined` |
+| `config` | [`BotConfig`](../modules.md#botconfig)<`any`\> | `undefined` |
 | `makeRequest` | `CoreMakerequest`<`any`\> | `RequesterFunc` |
 
 #### Defined in
 
-[lib/bot.ts:54](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L54)
+[lib/bot.ts:64](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L64)
 
 ## Properties
 
@@ -104,13 +105,13 @@ Root bot object used in handlers-- enshrined with many convenience helpers & les
 
 #### Defined in
 
-[lib/bot.ts:52](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L52)
+[lib/bot.ts:62](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L62)
 
 ___
 
 ### config
 
-• **config**: `BotConfig`<`any`\>
+• **config**: [`BotConfig`](../modules.md#botconfig)<`any`\>
 
 ___
 
@@ -120,7 +121,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:41](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L41)
+[lib/bot.ts:51](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L51)
 
 ___
 
@@ -132,7 +133,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:51](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L51)
+[lib/bot.ts:61](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L61)
 
 ___
 
@@ -148,7 +149,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:44](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L44)
+[lib/bot.ts:54](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L54)
 
 ___
 
@@ -158,7 +159,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:40](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L40)
+[lib/bot.ts:50](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L50)
 
 ___
 
@@ -168,7 +169,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:43](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L43)
+[lib/bot.ts:53](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L53)
 
 ## Methods
 
@@ -215,7 +216,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:212](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L212)
+[lib/bot.ts:222](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L222)
 
 ___
 
@@ -223,31 +224,29 @@ ___
 
 ▸ **buildImLink**(`target`, `label?`, `noBold?`): `string`
 
-Build a markdown, click'able link to a specific person (1-1 space)
+Generate a hyperlink to send a message to a person/agent
 
-#### Parameters
+## Example
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `target` | `string` | `undefined` | (email) |
-| `label?` | `string` | `undefined` |  |
-| `noBold` | `boolean` | `false` |  |
+```ts
 
-#### Returns
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot('__REPLACE__ME__');
 
-`string`
+// 2) Export your bot
+export default CultureBot;
 
-#### Defined in
+// 3) Do whatever you want!
 
-[lib/bot.ts:1426](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1426)
+CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+ const email = 'joe@joe.com'
+ const label = 'Send a message to Joe'
+ const link = $bot.buildImLink(email, label)
+ $bot.send(link)
+})
 
-___
-
-### buildLink
-
-▸ **buildLink**(`target`, `label?`, `noBold?`): `string`
-
-Generate a markdown link to a resource
+```
 
 #### Parameters
 
@@ -261,11 +260,53 @@ Generate a markdown link to a resource
 
 `string`
 
-markdown click'able link
+#### Defined in
+
+[lib/bot.ts:1597](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1597)
+
+___
+
+### buildLink
+
+▸ **buildLink**(`target`, `label?`, `noBold?`): `string`
+
+Creates a markdown bolded hyperlink
+
+## Example
+
+```ts
+
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot('__REPLACE__ME__');
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+ const link = $bot.buildLink('https://youtu.be/6A8W77m-ZTw?t=114')
+ $bot.send('Is it biscotti or biscotto?')
+})
+
+```
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `target` | `string` | `undefined` |
+| `label?` | `string` | `undefined` |
+| `noBold` | `boolean` | `false` |
+
+#### Returns
+
+`string`
 
 #### Defined in
 
-[lib/bot.ts:1393](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1393)
+[lib/bot.ts:1518](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1518)
 
 ___
 
@@ -273,15 +314,37 @@ ___
 
 ▸ **buildMeetingLink**(`target`, `label?`, `noBold?`): `string`
 
-Build a markdown, click'able link to a meeting with a specific person)
+Generate a meeting hyperlink to open a meeting with a person
+
+## Example
+
+```ts
+
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot('__REPLACE__ME__');
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+ const email = 'joe@joe.com'
+ const label = 'Click here to talk to Joe'
+ const link = $bot.buildMeetingLink(email, label)
+ $bot.send(link)
+})
+
+```
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `target` | `string` | `undefined` | (email address) |
-| `label?` | `string` | `undefined` |  |
-| `noBold` | `boolean` | `false` |  |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `target` | `string` | `undefined` |
+| `label?` | `string` | `undefined` |
+| `noBold` | `boolean` | `false` |
 
 #### Returns
 
@@ -289,7 +352,7 @@ Build a markdown, click'able link to a meeting with a specific person)
 
 #### Defined in
 
-[lib/bot.ts:1410](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1410)
+[lib/bot.ts:1563](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1563)
 
 ___
 
@@ -297,15 +360,37 @@ ___
 
 ▸ **buildSpaceLink**(`target`, `label?`, `noBold?`): `string`
 
-Build a markdown, click'able link to a specific space (OPT+CMD+K on Mac or CTRL-SHFT-K on windows to get space id)
+Generate a hyperlink to a space/room
+
+## Example
+
+```ts
+
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot('__REPLACE__ME__');
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+ const roomId = 'Y2lzY29zL3ajsLpmVzL1JPT00vNTBjNma'
+ const label = 'Go to the special space'
+ const link = $bot.buildSpaceLink(roomId, label)
+ $bot.send(link)
+})
+
+```
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `target` | `string` | `undefined` | (email) |
-| `label?` | `string` | `undefined` |  |
-| `noBold` | `boolean` | `false` |  |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `target` | `string` | `undefined` |
+| `label?` | `string` | `undefined` |
+| `noBold` | `boolean` | `false` |
 
 #### Returns
 
@@ -313,7 +398,7 @@ Build a markdown, click'able link to a specific space (OPT+CMD+K on Mac or CTRL-
 
 #### Defined in
 
-[lib/bot.ts:1440](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1440)
+[lib/bot.ts:1639](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1639)
 
 ___
 
@@ -340,9 +425,9 @@ CultureBot.contains(["hi", "hey"],
   const cardData = $bot.card({
     title: "Speedybot Hub",
     subTitle: "Sign the paperwork",
-    chips: ["ping", "pong", "hi", "files"],
-    image: "https://i.imgur.com/LybLW7J.gif",
-    url: "https://github.com/valgaze/speedybot-hub"
+    chips: ["ping", "pong", "hi",],
+    image: "https://github.com/valgaze/speedybot-mini/raw/deploy/docs/assets/logo.png?raw=true",
+    url: "https://github.com/valgaze/speedybot-mini"
   });
   $bot.send(cardData);
  })
@@ -361,13 +446,13 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:428](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L428)
+[lib/bot.ts:439](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L439)
 
 ___
 
 ### clearScreen
 
-▸ **clearScreen**(`repeatCount?`): `Promise`<`void`\>
+▸ **clearScreen**(`repeatCount?`): `Promise`<`MessageReply`\>
 
 Clear the screen on desktop clients (useful for demos)
 
@@ -397,11 +482,11 @@ CultureBot.contains(["hi", "hey"],
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`<`MessageReply`\>
 
 #### Defined in
 
-[lib/bot.ts:1079](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1079)
+[lib/bot.ts:1180](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1180)
 
 ___
 
@@ -448,7 +533,7 @@ SpeedyCard
 
 #### Defined in
 
-[lib/bot.ts:1236](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1236)
+[lib/bot.ts:1335](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1335)
 
 ___
 
@@ -495,7 +580,7 @@ SpeedyCard
 
 #### Defined in
 
-[lib/bot.ts:1273](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1273)
+[lib/bot.ts:1372](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1372)
 
 ___
 
@@ -535,7 +620,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:551](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L551)
+[lib/bot.ts:562](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L562)
 
 ___
 
@@ -547,10 +632,13 @@ Send a 1-1/DM message to a user based on their email or personId
 
 You can send a string or a card
 
+## Example
+
 ```ts
+
 import { Speedybot } from 'speedybot-mini'
 // 1) Initialize your bot w/ config
-const CultureBot = new Speedybot('tokenPlaceholder');
+const CultureBot = new Speedybot('__REPLACE__ME__');
 
 // 2) Export your bot
 export default CultureBot;
@@ -561,9 +649,10 @@ CultureBot.contains(["hi", "hey"],
  async ($bot, msg) => {
  $bot.dm('username@domain.com', 'Here is a secret message')
 
- $bot.dm('aaa-bbb-ccc-ddd-eee', $bot.card({title:'biscotti', subTitle:'Is it biscotti or biscotto?', chips:['biscotti','biscotto']}))
+ $bot.dm('aaa-bbb-ccc-ddd-eee', $bot.card({title:'biscotti', subTitle:'Is it biscotti or biscotto?' url: 'https://youtu.be/6A8W77m-ZTw?t=114', chips:['biscotti','biscotto']}))
 
 })
+
 ```
 
 #### Parameters
@@ -580,7 +669,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:253](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L253)
+[lib/bot.ts:265](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L265)
 
 ___
 
@@ -610,7 +699,7 @@ Fill in a template (usually used by sendTemplate)
 
 #### Defined in
 
-[lib/bot.ts:106](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L106)
+[lib/bot.ts:116](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L116)
 
 ___
 
@@ -624,7 +713,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:706](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L706)
+[lib/bot.ts:731](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L731)
 
 ___
 
@@ -675,7 +764,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:643](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L643)
+[lib/bot.ts:652](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L652)
 
 ___
 
@@ -709,7 +798,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:514](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L514)
+[lib/bot.ts:525](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L525)
 
 ___
 
@@ -729,7 +818,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:830](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L830)
+[lib/bot.ts:855](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L855)
 
 ___
 
@@ -749,7 +838,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:717](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L717)
+[lib/bot.ts:742](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L742)
 
 ___
 
@@ -788,7 +877,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:1040](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1040)
+[lib/bot.ts:1141](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1141)
 
 ___
 
@@ -833,7 +922,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:1189](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1189)
+[lib/bot.ts:1288](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1288)
 
 ___
 
@@ -855,7 +944,7 @@ Cheap way to get content-dispoition header & content-type and get extension
 
 #### Defined in
 
-[lib/bot.ts:603](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L603)
+[lib/bot.ts:612](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L612)
 
 ___
 
@@ -882,7 +971,7 @@ $bot.pickRandom(list); // 2
 
 #### Defined in
 
-[lib/bot.ts:80](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L80)
+[lib/bot.ts:90](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L90)
 
 ___
 
@@ -898,7 +987,7 @@ Generate a random string of 11 characters (letters + numbers)
 
 #### Defined in
 
-[lib/bot.ts:713](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L713)
+[lib/bot.ts:738](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L738)
 
 ___
 
@@ -926,7 +1015,7 @@ Legacy alias for $bot.send
 
 #### Defined in
 
-[lib/bot.ts:1484](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1484)
+[lib/bot.ts:1654](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1654)
 
 ___
 
@@ -983,7 +1072,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:332](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L332)
+[lib/bot.ts:345](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L345)
 
 ___
 
@@ -1011,7 +1100,7 @@ Legacy alias for $bot.sendCard
 
 #### Defined in
 
-[lib/bot.ts:1499](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1499)
+[lib/bot.ts:1669](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1669)
 
 ___
 
@@ -1062,7 +1151,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:763](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L763)
+[lib/bot.ts:788](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L788)
 
 ___
 
@@ -1106,7 +1195,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:1012](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1012)
+[lib/bot.ts:1113](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1113)
 
 ___
 
@@ -1153,7 +1242,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:1114](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1114)
+[lib/bot.ts:1215](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1215)
 
 ___
 
@@ -1179,7 +1268,7 @@ $bot.sendRandom(list); // 'hello'
 
 #### Defined in
 
-[lib/bot.ts:91](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L91)
+[lib/bot.ts:101](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L101)
 
 ___
 
@@ -1221,7 +1310,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:1139](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1139)
+[lib/bot.ts:1240](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1240)
 
 ___
 
@@ -1265,7 +1354,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:147](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L147)
+[lib/bot.ts:157](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L157)
 
 ___
 
@@ -1306,7 +1395,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:175](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L175)
+[lib/bot.ts:185](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L185)
 
 ___
 
@@ -1349,7 +1438,7 @@ SpeedyCard
 
 #### Defined in
 
-[lib/bot.ts:1380](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1380)
+[lib/bot.ts:1479](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1479)
 
 ___
 
@@ -1372,7 +1461,7 @@ Takes input data and wraps in markdown backticks
 
 #### Defined in
 
-[lib/bot.ts:1050](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1050)
+[lib/bot.ts:1151](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1151)
 
 ___
 
@@ -1382,12 +1471,31 @@ ___
 
 Temporary card that you can stash away data and destroy
 
+```ts
+
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot(config);
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.contains(["hi", "hey"],
+ async ($bot, msg) => {
+  const msg = 'mysecret'
+  $bot.stashCard('mySecret')
+})
+
+```
+
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `secret` | `string` |  |
-| `message?` | `string` | ```ts  import { Speedybot } from 'speedybot-mini' // 1) Initialize your bot w/ config const CultureBot = new Speedybot(config);  // 2) Export your bot export default CultureBot;  // 3) Do whatever you want!  CultureBot.contains(["hi", "hey"],  async ($bot, msg) => {   const msg = 'mysecret'   $bot.stashCard('mySecret') })  ``` |
+| Name | Type |
+| :------ | :------ |
+| `secret` | `string` |
+| `message?` | `string` |
 
 #### Returns
 
@@ -1395,7 +1503,7 @@ Temporary card that you can stash away data and destroy
 
 #### Defined in
 
-[lib/bot.ts:589](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L589)
+[lib/bot.ts:598](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L598)
 
 ___
 
@@ -1442,7 +1550,7 @@ SpeedyCard
 
 #### Defined in
 
-[lib/bot.ts:1348](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1348)
+[lib/bot.ts:1447](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1447)
 
 ___
 
@@ -1450,17 +1558,37 @@ ___
 
 ▸ **thread**(`thread`): `Promise`<`void`\>
 
-Send a message with a reply
+Send a message and attach replies
 
-Restrictions :(
+Current Limitations :(
 - Only 1st message can be a card
 - Replies can only be strings
+- With more than 2-3 replies, order is not guaranteed (replies can arrive out of order)
+
+## Example
+
+```ts
+
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot('__REPLACE__ME__');
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+  $bot.thread([$bot.card().setTitle('hello world!').setChips(['a','b','c']), 'Pick one of the above!', 'Come on do it!'])
+})
+
+```
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `thread` | [`string` \| [`SpeedyCard`](SpeedyCard.md), ...(string \| ToMessage)[]] | ex $bot.thread([$bot.card().setTitle('hello world!').setChips(['a','b','c']), 'Pick one of the above!']) |
+| Name | Type |
+| :------ | :------ |
+| `thread` | [`string` \| [`SpeedyCard`](SpeedyCard.md), ...(string \| ToMessage)[]] |
 
 #### Returns
 
@@ -1468,7 +1596,7 @@ Restrictions :(
 
 #### Defined in
 
-[lib/bot.ts:898](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L898)
+[lib/bot.ts:999](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L999)
 
 ___
 
@@ -1479,7 +1607,7 @@ ___
 Translate a string based on provided locale config
 
 ```ts
-// locale data (gets specified into Speedybot-hub config)
+// locale data (gets specified into Speedybot config)
 const locales = {
  en: {
    greetings: {
@@ -1513,9 +1641,9 @@ export default CultureBot;
 
 CultureBot.contains(["hi", "hey"],
  async ($bot, msg) => {
-   const eng = $bot.translate('en', 'greetings.welcome')
-   const esp = $bot.translate('es', 'greetings.welcome')
-   const chn = $bot.translate('cn', 'greetings.welcome')
+   const eng = $bot.translate('en', 'greetings.welcome') // 'Hello!!'
+   const esp = $bot.translate('es', 'greetings.welcome') // 'hola!!'
+   const chn = $bot.translate('cn', 'greetings.welcome') // '你好'
    const fallback = $bot.translate('whoops_doesnt_exist', 'greetings.welcome', 'Hey there fallback!')
    $bot.send(`${eng}, ${esp}, ${chn}, ${fallback}`)
 })
@@ -1537,7 +1665,58 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:972](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L972)
+[lib/bot.ts:1073](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1073)
+
+___
+
+### trigger
+
+▸ **trigger**(`text`, `msg`): `Promise`<`any`\>
+
+Trigger handler matching as if entered by the user
+
+This will not trigger .every or .noMatch handlers
+
+**Note:** The ```msg``` parameter of matched handler function will refer to the original message
+
+## Example
+
+```ts
+
+import { Speedybot } from 'speedybot-mini'
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot('__REPLACE__ME__');
+
+// 2) Export your bot
+export default CultureBot;
+
+// 3) Do whatever you want!
+
+CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+ $bot.send('This is the hi greeting handler!')
+})
+
+CultureBot.contains('trigger', async ($bot, msg) => {
+ $bot.send('About to trigger the hi trigger')
+ $bot.trigger('hi', msg)
+})
+
+```
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `text` | `string` |
+| `msg` | `RootTrigger`<`AA_Details`\> \| `RootTrigger`<`Message_Details`\> & { `text`: `string`  } \| `RootTrigger`<`File_Details`\> & { `text?`: `string`  } |
+
+#### Returns
+
+`Promise`<`any`\>
+
+#### Defined in
+
+[lib/bot.ts:944](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L944)
 
 ___
 
@@ -1584,4 +1763,4 @@ SpeedyCard
 
 #### Defined in
 
-[lib/bot.ts:1310](https://github.com/valgaze/speedybot-mini/blob/35574c0/src/lib/bot.ts#L1310)
+[lib/bot.ts:1409](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1409)

@@ -2,7 +2,7 @@
 
 Take incoming webhooks + process them. This is running on a persistent, very server-full (definitely not server-less) Express instance
 
-tl;dr: edit **[./settings/config.ts](./settings/config.ts)** and pass in your token and boot with `npm run start:server`
+tl;dr: edit **[./settings/config.ts](./settings/config.ts)** and pass in your token and boot with `npm start` (or `npm run dev` to activate reload on code changes)
 
 ## Quickstart
 

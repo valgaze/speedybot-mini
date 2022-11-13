@@ -1,5 +1,6 @@
 import { SpeedyCard } from "./cards";
 import { BotInst } from "./bot";
+import { CoreMakerequest } from "./common";
 
 /**
  * Configuratio Options for onFile handler
@@ -212,13 +213,17 @@ export type RootTrigger<T = any> = {
 export type GeneralHandler<T = any> = (
   bot: BotInst,
   msg: T
-) => void | Promise<void>;
+) => void | Promise<void> | Promise<MessageReply>;
 export type MsgHandler = GeneralHandler<
   RootTrigger<Message_Details> & { text: string }
 >;
 export type AAHandler = GeneralHandler<RootTrigger<AA_Details>>;
 export type FileRootHandler = GeneralHandler<RootTrigger<File_Details>>;
-
+export type NLUHandler = {
+  bot: BotInst;
+  msg: RootTrigger<Message_Details> & { text: string };
+  api: CoreMakerequest;
+};
 export type RequestOps = {
   "content-type"?: string;
   method?: string;

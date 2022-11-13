@@ -1,13 +1,25 @@
 import "cross-fetch/polyfill";
-
-import express from "express";
 import bodyParser from "body-parser";
-import CultureBot from "./settings/config";
+import dotenv from "dotenv";
+import express from "express";
 import { finale } from "speedybot-mini";
+import { resolve } from "path";
+import CultureBot from "./../settings/config";
 import { validateWebhook } from "./validateWebhook";
+
+// Expects .env to get token on BOT_TOKEN
+dotenv.config({ path: resolve(__dirname, "..", ".env") });
+
 const app = express();
 const port = process.env.PORT || 8000;
 app.use(bodyParser.json());
+
+const token = process.env.BOT_TOKEN as string;
+if (!token) {
+  console.log("\n## Token missing (check .env file)");
+  process.exit(0);
+}
+CultureBot.setToken(token);
 
 app.post("/speedybot", async (req, res) => {
   const json = req.body;
@@ -15,7 +27,7 @@ app.post("/speedybot", async (req, res) => {
   // For more info see: https://github.com/valgaze/speedybot-mini/blob/deploy/docs/webhooks.md#secrets
 
   const signature = req.header("x-spark-signature");
-  const webhookSecret = "__REPLACE__ME__";
+  const webhookSecret = process.env.WEBHOOK_SECRET;
 
   // Validate webhook
   if (webhookSecret && signature) {
