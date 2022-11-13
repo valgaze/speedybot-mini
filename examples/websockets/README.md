@@ -20,9 +20,7 @@ npm i
 
 - If you don't have a bot, create one and save the token from here: **[https://developer.webex.com/my-apps/new/bot](https://developer.webex.com/my-apps/new/bot)**
 
-- Copy the file **[.env.example](.env.example)** as `.env` in the root of your project and save your access token under the `token` field.
-
-Note: The `.env` file will never be aded to source control, **[further details here](https://docs.sst.dev/environment-variables)**
+- Copy the file **[.env.example](.env.example)** as `.env` in the root of your project and save your access token under the `BOT_TOKEN` field.
 
 ## 3) Turn it on!
 
@@ -41,7 +39,7 @@ npm start
 ## Boot
 
 - `npm run dev`: Boot with reload on code changes
-- `npm run reset`: If you encounter an issue with "too may device registrations" when using live-reload run this command
+- `npm run reset`: If you encounter an issue with "too may device registrations" when using live-reload run this command-- wait a few minutes after running before reattempting websockets
 
 ## Resources
 

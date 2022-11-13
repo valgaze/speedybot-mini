@@ -35,7 +35,7 @@ You can get up and running FAST with Speedybot. Speedybot can run on a variety o
 npm install speedybot-mini
 ```
 
-**[See starter bot](./settings/config.ts)**
+**[See starter bot](https://github.com/valgaze/speedybot-mini/blob/deploy/settings/config.ts)**
 
 ## How to make a bot
 
