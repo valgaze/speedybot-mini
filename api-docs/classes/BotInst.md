@@ -80,7 +80,7 @@ Root bot object used in handlers-- enshrined with many convenience helpers & les
 
 #### Defined in
 
-[lib/bot.ts:64](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L64)
+[lib/bot.ts:64](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L64)
 
 ## Properties
 
@@ -105,7 +105,7 @@ Root bot object used in handlers-- enshrined with many convenience helpers & les
 
 #### Defined in
 
-[lib/bot.ts:62](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L62)
+[lib/bot.ts:62](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L62)
 
 ___
 
@@ -121,7 +121,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:51](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L51)
+[lib/bot.ts:51](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L51)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:61](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L61)
+[lib/bot.ts:61](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L61)
 
 ___
 
@@ -149,7 +149,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:54](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L54)
+[lib/bot.ts:54](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L54)
 
 ___
 
@@ -159,7 +159,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:50](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L50)
+[lib/bot.ts:50](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L50)
 
 ___
 
@@ -169,7 +169,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:53](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L53)
+[lib/bot.ts:53](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L53)
 
 ## Methods
 
@@ -216,7 +216,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:222](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L222)
+[lib/bot.ts:222](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L222)
 
 ___
 
@@ -262,7 +262,7 @@ CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
 
 #### Defined in
 
-[lib/bot.ts:1597](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1597)
+[lib/bot.ts:1585](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1585)
 
 ___
 
@@ -306,7 +306,7 @@ CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
 
 #### Defined in
 
-[lib/bot.ts:1518](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1518)
+[lib/bot.ts:1506](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1506)
 
 ___
 
@@ -352,7 +352,7 @@ CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
 
 #### Defined in
 
-[lib/bot.ts:1563](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1563)
+[lib/bot.ts:1551](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1551)
 
 ___
 
@@ -398,7 +398,7 @@ CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
 
 #### Defined in
 
-[lib/bot.ts:1639](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1639)
+[lib/bot.ts:1627](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1627)
 
 ___
 
@@ -446,7 +446,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:439](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L439)
+[lib/bot.ts:439](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L439)
 
 ___
 
@@ -486,7 +486,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:1180](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1180)
+[lib/bot.ts:1168](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1168)
 
 ___
 
@@ -533,7 +533,7 @@ SpeedyCard
 
 #### Defined in
 
-[lib/bot.ts:1335](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1335)
+[lib/bot.ts:1323](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1323)
 
 ___
 
@@ -580,7 +580,7 @@ SpeedyCard
 
 #### Defined in
 
-[lib/bot.ts:1372](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1372)
+[lib/bot.ts:1360](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1360)
 
 ___
 
@@ -620,7 +620,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:562](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L562)
+[lib/bot.ts:562](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L562)
 
 ___
 
@@ -669,7 +669,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:265](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L265)
+[lib/bot.ts:265](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L265)
 
 ___
 
@@ -699,7 +699,7 @@ Fill in a template (usually used by sendTemplate)
 
 #### Defined in
 
-[lib/bot.ts:116](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L116)
+[lib/bot.ts:116](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L116)
 
 ___
 
@@ -713,7 +713,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:731](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L731)
+[lib/bot.ts:719](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L719)
 
 ___
 
@@ -764,7 +764,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:652](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L652)
+[lib/bot.ts:652](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L652)
 
 ___
 
@@ -798,7 +798,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:525](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L525)
+[lib/bot.ts:525](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L525)
 
 ___
 
@@ -818,7 +818,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:855](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L855)
+[lib/bot.ts:843](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L843)
 
 ___
 
@@ -838,7 +838,7 @@ ___
 
 #### Defined in
 
-[lib/bot.ts:742](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L742)
+[lib/bot.ts:730](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L730)
 
 ___
 
@@ -877,7 +877,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:1141](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1141)
+[lib/bot.ts:1129](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1129)
 
 ___
 
@@ -922,7 +922,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:1288](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1288)
+[lib/bot.ts:1276](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1276)
 
 ___
 
@@ -944,7 +944,7 @@ Cheap way to get content-dispoition header & content-type and get extension
 
 #### Defined in
 
-[lib/bot.ts:612](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L612)
+[lib/bot.ts:612](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L612)
 
 ___
 
@@ -971,7 +971,7 @@ $bot.pickRandom(list); // 2
 
 #### Defined in
 
-[lib/bot.ts:90](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L90)
+[lib/bot.ts:90](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L90)
 
 ___
 
@@ -987,7 +987,7 @@ Generate a random string of 11 characters (letters + numbers)
 
 #### Defined in
 
-[lib/bot.ts:738](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L738)
+[lib/bot.ts:726](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L726)
 
 ___
 
@@ -1015,7 +1015,7 @@ Legacy alias for $bot.send
 
 #### Defined in
 
-[lib/bot.ts:1654](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1654)
+[lib/bot.ts:1642](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1642)
 
 ___
 
@@ -1072,7 +1072,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:345](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L345)
+[lib/bot.ts:345](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L345)
 
 ___
 
@@ -1100,7 +1100,7 @@ Legacy alias for $bot.sendCard
 
 #### Defined in
 
-[lib/bot.ts:1669](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1669)
+[lib/bot.ts:1657](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1657)
 
 ___
 
@@ -1151,7 +1151,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:788](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L788)
+[lib/bot.ts:776](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L776)
 
 ___
 
@@ -1195,7 +1195,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:1113](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1113)
+[lib/bot.ts:1101](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1101)
 
 ___
 
@@ -1242,7 +1242,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:1215](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1215)
+[lib/bot.ts:1203](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1203)
 
 ___
 
@@ -1268,7 +1268,7 @@ $bot.sendRandom(list); // 'hello'
 
 #### Defined in
 
-[lib/bot.ts:101](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L101)
+[lib/bot.ts:101](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L101)
 
 ___
 
@@ -1310,7 +1310,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:1240](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1240)
+[lib/bot.ts:1228](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1228)
 
 ___
 
@@ -1354,7 +1354,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:157](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L157)
+[lib/bot.ts:157](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L157)
 
 ___
 
@@ -1395,7 +1395,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:185](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L185)
+[lib/bot.ts:185](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L185)
 
 ___
 
@@ -1438,7 +1438,7 @@ SpeedyCard
 
 #### Defined in
 
-[lib/bot.ts:1479](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1479)
+[lib/bot.ts:1467](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1467)
 
 ___
 
@@ -1461,7 +1461,7 @@ Takes input data and wraps in markdown backticks
 
 #### Defined in
 
-[lib/bot.ts:1151](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1151)
+[lib/bot.ts:1139](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1139)
 
 ___
 
@@ -1503,7 +1503,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:598](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L598)
+[lib/bot.ts:598](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L598)
 
 ___
 
@@ -1550,7 +1550,7 @@ SpeedyCard
 
 #### Defined in
 
-[lib/bot.ts:1447](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1447)
+[lib/bot.ts:1435](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1435)
 
 ___
 
@@ -1596,7 +1596,7 @@ CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
 
 #### Defined in
 
-[lib/bot.ts:999](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L999)
+[lib/bot.ts:987](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L987)
 
 ___
 
@@ -1665,7 +1665,7 @@ CultureBot.contains(["hi", "hey"],
 
 #### Defined in
 
-[lib/bot.ts:1073](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1073)
+[lib/bot.ts:1061](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1061)
 
 ___
 
@@ -1716,7 +1716,7 @@ CultureBot.contains('trigger', async ($bot, msg) => {
 
 #### Defined in
 
-[lib/bot.ts:944](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L944)
+[lib/bot.ts:932](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L932)
 
 ___
 
@@ -1763,4 +1763,4 @@ SpeedyCard
 
 #### Defined in
 
-[lib/bot.ts:1409](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/bot.ts#L1409)
+[lib/bot.ts:1397](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L1397)

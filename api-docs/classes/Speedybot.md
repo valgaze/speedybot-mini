@@ -65,7 +65,7 @@
 
 #### Defined in
 
-[lib/speedybot.ts:85](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L85)
+[lib/speedybot.ts:85](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L85)
 
 ## Properties
 
@@ -75,7 +75,7 @@
 
 #### Defined in
 
-[lib/speedybot.ts:100](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L100)
+[lib/speedybot.ts:100](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L100)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:69](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L69)
+[lib/speedybot.ts:69](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L69)
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:101](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L101)
+[lib/speedybot.ts:101](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L101)
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:116](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L116)
+[lib/speedybot.ts:116](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L116)
 
 ___
 
@@ -129,7 +129,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:99](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L99)
+[lib/speedybot.ts:99](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L99)
 
 ## Methods
 
@@ -152,7 +152,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:67](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L67)
+[lib/speedybot.ts:67](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L67)
 
 ___
 
@@ -172,7 +172,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:763](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L763)
+[lib/speedybot.ts:763](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L763)
 
 ___
 
@@ -193,7 +193,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:794](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L794)
+[lib/speedybot.ts:794](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L794)
 
 ___
 
@@ -215,7 +215,7 @@ Returns look up index of matching handler if one exists
 
 #### Defined in
 
-[lib/speedybot.ts:713](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L713)
+[lib/speedybot.ts:713](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L713)
 
 ___
 
@@ -239,7 +239,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:118](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L118)
+[lib/speedybot.ts:118](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L118)
 
 ___
 
@@ -286,7 +286,7 @@ CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
 
 #### Defined in
 
-[lib/speedybot.ts:201](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L201)
+[lib/speedybot.ts:201](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L201)
 
 ___
 
@@ -306,7 +306,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:773](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L773)
+[lib/speedybot.ts:773](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L773)
 
 ___
 
@@ -326,7 +326,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:517](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L517)
+[lib/speedybot.ts:517](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L517)
 
 ___
 
@@ -382,7 +382,7 @@ CultureBot.every(async ($bot, msg) => {
 
 #### Defined in
 
-[lib/speedybot.ts:377](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L377)
+[lib/speedybot.ts:377](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L377)
 
 ___
 
@@ -425,7 +425,7 @@ CultureBot.exact("hi", async ($bot, msg) => {
 
 #### Defined in
 
-[lib/speedybot.ts:239](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L239)
+[lib/speedybot.ts:239](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L239)
 
 ___
 
@@ -439,7 +439,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:96](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L96)
+[lib/speedybot.ts:96](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L96)
 
 ___
 
@@ -481,7 +481,7 @@ CultureBot.fuzzy(["hi", "hey"], async ($bot, msg) => {
 
 #### Defined in
 
-[lib/speedybot.ts:154](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L154)
+[lib/speedybot.ts:154](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L154)
 
 ___
 
@@ -501,7 +501,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:811](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L811)
+[lib/speedybot.ts:811](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L811)
 
 ___
 
@@ -522,7 +522,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:848](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L848)
+[lib/speedybot.ts:848](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L848)
 
 ___
 
@@ -536,7 +536,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:834](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L834)
+[lib/speedybot.ts:834](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L834)
 
 ___
 
@@ -550,7 +550,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:790](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L790)
+[lib/speedybot.ts:790](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L790)
 
 ___
 
@@ -570,7 +570,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:888](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L888)
+[lib/speedybot.ts:888](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L888)
 
 ___
 
@@ -591,7 +591,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:825](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L825)
+[lib/speedybot.ts:825](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L825)
 
 ___
 
@@ -643,7 +643,7 @@ CultureBot.nlu("hi", async ($bot, msg, api) => {
 
 #### Defined in
 
-[lib/speedybot.ts:280](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L280)
+[lib/speedybot.ts:280](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L280)
 
 ___
 
@@ -686,7 +686,7 @@ CultureBot.noMatch(async ($bot, msg) => {
 
 #### Defined in
 
-[lib/speedybot.ts:338](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L338)
+[lib/speedybot.ts:338](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L338)
 
 ___
 
@@ -708,7 +708,7 @@ Camera handler-- will trigger by default for png, jpeg, & jpg
 
 #### Defined in
 
-[lib/speedybot.ts:421](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L421)
+[lib/speedybot.ts:421](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L421)
 
 ___
 
@@ -756,7 +756,7 @@ CultureBot.onFile(async ($bot, msg, fileData) => {
 
 #### Defined in
 
-[lib/speedybot.ts:457](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L457)
+[lib/speedybot.ts:457](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L457)
 
 ___
 
@@ -810,7 +810,7 @@ CultureBot.onSubmit(async ($bot, msg, fileData) => {
 
 #### Defined in
 
-[lib/speedybot.ts:507](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L507)
+[lib/speedybot.ts:507](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L507)
 
 ___
 
@@ -832,7 +832,7 @@ Cheap way to get content-dispoition header & content-type and get extension
 
 #### Defined in
 
-[lib/speedybot.ts:882](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L882)
+[lib/speedybot.ts:882](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L882)
 
 ___
 
@@ -852,7 +852,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:535](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L535)
+[lib/speedybot.ts:535](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L535)
 
 ___
 
@@ -872,7 +872,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:664](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L664)
+[lib/speedybot.ts:664](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L664)
 
 ___
 
@@ -899,7 +899,7 @@ Note: All queries are lower-cased
 
 #### Defined in
 
-[lib/speedybot.ts:691](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L691)
+[lib/speedybot.ts:691](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L691)
 
 ___
 
@@ -940,7 +940,7 @@ CultureBot.regex(new RegExp('x'), async ($bot, msg) => {
 
 #### Defined in
 
-[lib/speedybot.ts:307](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L307)
+[lib/speedybot.ts:307](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L307)
 
 ___
 
@@ -967,7 +967,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:396](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L396)
+[lib/speedybot.ts:396](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L396)
 
 ___
 
@@ -988,7 +988,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:425](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L425)
+[lib/speedybot.ts:425](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L425)
 
 ___
 
@@ -1008,4 +1008,4 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:786](https://github.com/valgaze/speedybot-mini/blob/48476ff/src/lib/speedybot.ts#L786)
+[lib/speedybot.ts:786](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L786)
