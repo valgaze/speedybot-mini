@@ -676,17 +676,9 @@ export class BotInst {
       .split("=")[1]
       .replace(/\"/g, "");
     const extension = fileName.split(".").pop() || "";
-
-    console.log(`
-    ##
-
-    - fileName: ${fileName}
-    - extension: ${extension}
-    
-    `);
     // data could be binary if user needs it
     const shouldProbablyBeArrayBuffer =
-      (!type.includes("json") && !type.includes("txt")) ||
+      (!type.includes("json") && !type.includes("text")) ||
       type.includes("image");
     let data: ArrayBuffer | Response | {} = res;
     if (opts.responseType === "arraybuffer" || shouldProbablyBeArrayBuffer) {
@@ -698,14 +690,14 @@ export class BotInst {
       }
     } else {
       try {
-        // should we not presume json?
-        data = await res.json();
-      } catch (e) {
-        try {
+        if (type.includes("json")) {
+          data = await res.json();
+        } else {
+          // should we not presume text?
           data = await res.text();
-        } catch (e) {
-          data = {};
         }
+      } catch (e) {
+        data = {};
       }
     }
 
@@ -723,10 +715,6 @@ export class BotInst {
     };
     return payload;
   }
-
-  // public generateHelp(): { helpText: string; label: string }[] {
-  //   return this.helpContent;
-  // }
 
   private generateFileName() {
     return `${this.rando()}_${this.rando()}`;
@@ -1714,7 +1702,7 @@ export function WebhookBot(
   config: Partial<BotConfig>,
   makeRequest: CoreMakerequest = RequesterFunc
 ) {
-  const inst = new BotInst(config as BotConfig); // skip roomId & friends
+  const inst = new BotInst(config as BotConfig); // skip roomId & Speedybot inst & friends
   // Restrict to smaller subset
   return {
     snippet(data: any, dataType: string) {

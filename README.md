@@ -2,16 +2,18 @@
 
 ## Speedybot-mini
 
-tl;dr: this should take care of most of the behind-the-scenes so you can focus on your content, see **[quickstarts](#quickstarts)** to get up and running fast
+Speedybot is a tool to take you from zero to a user-valuable bot as quickly as possible w/ a buttery-smooth developer experience. In short, Speedybot lets you focus on the stuff that actually matters-- content and powerful integrations.
+
+If you're in a hurry, see the **[quickstarts](#quickstarts)** to get up and running fast on a variety of infrastructure (websockets, server, serverless, container-less, etc).
 
 - 🌟 Zero External Dependencies 🌟
 - Adds support **[tappable suggestion "chips"](#chips)**
 - Includes **[SpeedyCard card builder](#speedycard)** (create rich **[Adaptive Cards](https://developer.webex.com/docs/api/guides/cards)** without wrangling JSON)
+- Lots of handy utilities for things like **[alerts, cards, files, and more](https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/classes/BotInst.md#methods)**
 - Locale & i18n support
-- Optimized for **[V8 Isolates](https://developers.cloudflare.com/workers/learning/how-workers-works/)** for milisecond response times (🥶 no more cold start problems 🥶)
 - Runs on virtually any infrastructure-- servers, V8 isolates, containers, container-less, edge, etc
 
-The era of manually writing "handlers" or matching text with RegEx's is coming to an end (though Speedybot has several trick to make that easier). In the future there will be far fewer "keyword" handlers and instead deeper integration with 3rd-party conversation services like **[Voiceflow](https://www.voiceflow.com/)**, **[Amazon Lex](https://aws.amazon.com/lex/)**, **[DialogFlow](https://cloud.google.com/dialogflow/docs)**
+The era of manually writing "handlers" or matching text with RegEx's is coming to an end (though Speedybot has several trick to make writing those easier). In the future, there will be far fewer "keyword" handlers and instead deeper integration with 3rd-party conversation services like **[Voiceflow](https://www.voiceflow.com/)**, **[Amazon Lex](https://aws.amazon.com/lex/)**, **[DialogFlow](https://cloud.google.com/dialogflow/docs)** and Speedybot can help make that transition as smooth as possible
 
 ## Quickstarts
 
@@ -23,7 +25,7 @@ You can get up and running FAST with Speedybot. Speedybot can run on a variety o
 
 | Platform                                                                                                                          | Needs server? | Needs webhooks? |
 | --------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------- |
-| **[🔌 Deploy with websockets](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/webhooks)**                          | ❌            | ❌              |
+| **[🔌 Deploy with websockets](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/websockets)**                        | ❌            | ❌              |
 | **[💻 Deploy to Simple Express Server](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/express-incoming-webhook)** | ✅            | ✅              |
 | **[λ Deploy to AWS Lamda](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/aws-lambda)**                            | ❌            | ✅              |
 | **[🔥 Deploy to Worker](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/worker)**                                  | ❌            | ✅              |

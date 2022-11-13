@@ -328,9 +328,5 @@ CultureBot.onFile(async ($bot, msg, fileData) => {
   const snippetable = ["json", "txt", "csv"];
   if (snippetable.includes(fileData.extension)) {
     $bot.send(`snippit: ${fileData.markdownSnippet}`);
-    console.log("Grr", fileData.data);
-    $bot.send(fileData.data);
   }
-
-  // $bot.send(fileData.data);
 }).config({ matchText: true });

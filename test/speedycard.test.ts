@@ -1,6 +1,6 @@
 import { SpeedyCard } from "./../src/lib/index";
 describe("Sanity test", () => {
-  it("Token initalizes", async () => {
+  it("Basic card renders", async () => {
     const expected = {
       $schema: "http://adaptivecards.io/schemas/adaptive-card.json",
       type: "AdaptiveCard",

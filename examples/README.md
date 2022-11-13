@@ -6,7 +6,7 @@ Grab an example and see the included README for instructions on how to quickly g
 
 | Platform                                                                                                                                 | Needs server? | Needs webhooks? |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------- |
-| **[🔌 Deploy with websockets](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/webhooks)**                                 | ❌            | ❌              |
+| **[🔌 Deploy with websockets](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/websockets)**                               | ❌            | ❌              |
 | **[💻 Deploy to Simple Express Server](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/express-incoming-webhook)**        | ✅            | ✅              |
 | **[λ Deploy to AWS Lamda](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/aws-lambda)** using **[SST](https://sst.dev/)** | ❌            | ✅              |
 | **[🔥 Deploy to Worker](https://github.com/valgaze/speedybot-mini/tree/deploy/examples/worker)**                                         | ❌            | ✅              |
