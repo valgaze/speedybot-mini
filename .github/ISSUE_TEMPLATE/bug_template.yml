@@ -1,0 +1,47 @@
+name: "👹 Bug Report"
+description: Report a problem encountered using Speedybot
+labels: ["bug", "triage"]
+body:
+  - type: textarea
+    id: current-problem
+    attributes:
+      label: Current problem
+      description: What did you expect/want to happen vs what's happening right now? You can paste screenshots and use **[LiceCap](https://www.cockos.com/licecap/)** to record/paste GIFs
+      placeholder: What's going on
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Does your problem fit into any of these categories?
+      multiple: true
+      options:
+        - 🚀 Deployment
+        - 👹 Error
+        - 😭 Unclear
+        - ✅ Reproducible
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Copy and paste any relevant log output if available, you will not need to use backticks. (Make sure not to post PII or sensitive data)
+      render: shell
+  - type: textarea
+    id: other-attempts
+    attributes:
+      label: Attempted solution
+      description: What have you tried so far to resolve the problem?
+      placeholder: First I tried
+  - type: input
+    id: version
+    attributes:
+      label: Speedybot Version
+      description: What version of speedybot-mini are you using?
+      placeholder: 2.0.8
+    validations:
+      required: true
+  - type: textarea
+    id: remarks
+    attributes:
+      label: Other remarks?
+      placeholder: Add additional details

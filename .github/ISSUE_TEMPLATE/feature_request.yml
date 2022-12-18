@@ -1,0 +1,17 @@
+name: "🚀 Feature Request"
+description: Ideas to make speedybot more useful and your agent more value
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Idea
+      description: What's your request/idea? You can paste screenshots and you can use **[LiceCap](https://www.cockos.com/licecap/)** to record GIFs
+      placeholder: What's going on
+    validations:
+      required: true
+  - type: textarea
+    id: remarks
+    attributes:
+      label: Other remarks?
+      placeholder: Add additional details
