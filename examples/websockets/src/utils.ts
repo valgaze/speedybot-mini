@@ -1,5 +1,7 @@
-import path from "path";
+import "cross-fetch/polyfill";
 import dotenv from "dotenv";
+import path from "path";
+
 const [, , cliCommand] = process.argv;
 
 // Expects .env to get token on BOT_TOKEN
@@ -68,8 +70,7 @@ const resetDevices = async (token: string) => {
 };
 
 export class Websocket {
-  //@ts-ignore
-  public webexRef: StubbedWebEx;
+  public webexRef!: StubbedWebEx;
   public me: any;
   public listeners: Listeners = {};
   constructor(public token: string) {}
