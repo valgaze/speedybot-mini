@@ -8,8 +8,13 @@
     "start": "ts-node src/index.ts",
     "dev": "tsnd --respawn --watch src, src/index"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "bot",
+    "conversation",
+    "scaffold",
+    "speedybot"
+  ],
+  "author": "valgaze@gmail.com",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.12",
@@ -21,7 +26,7 @@
     "@types/node": "^16.18.3",
     "cross-fetch": "^3.1.5",
     "dotenv": "^16.0.3",
-    "speedybot-mini": "^2.0.3",
+    "speedybot-mini": "^2.0.6",
     "ts-node-dev": "^2.0.0",
     "webex": "^2.31.0"
   }

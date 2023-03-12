@@ -40,4 +40,4 @@
 
 #### Defined in
 
-[lib/bot.ts:27](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/bot.ts#L27)
+[lib/bot.ts:27](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/bot.ts#L27)
