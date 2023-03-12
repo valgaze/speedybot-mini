@@ -1,13 +1,14 @@
 import "cross-fetch/polyfill";
 import dotenv from "dotenv";
 import path from "path";
+import { init } from "webex";
+import { SelfData } from "speedybot-mini";
 
 const [, , cliCommand] = process.argv;
 
 // Expects .env to get token on BOT_TOKEN
 dotenv.config({ path: path.resolve(__dirname, "..", ".env") });
 
-import { init } from "webex";
 export type Listeners = {
   [key: string]: Function;
 };
@@ -78,9 +79,12 @@ export class Websocket {
     this.listeners[eventName] = handler;
   }
 
-  async getSelf() {
-    const { id } = await this.webexRef.people.get("me");
-    this.me = id;
+  async getSelf(full = false) {
+    const res = await this.webexRef.people.get("me");
+    if (full) {
+      return res as SelfData;
+    }
+    return { id: res.id } as SelfData;
   }
 
   async init() {

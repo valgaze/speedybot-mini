@@ -1326,6 +1326,34 @@ ${dataType === "json" ? JSON.stringify(data, null, 2) : data}
     );
   }
 
+  public banner(
+    msg: string,
+    style: "danger" | "success" | "warning" | "sky" | "yolo" = "danger"
+  ) {
+    let card: SpeedyCard;
+    switch (style) {
+      case "danger":
+        card = this.dangerCard({ title: msg });
+        break;
+      case "success":
+        card = this.successCard({ title: msg });
+        break;
+      case "warning":
+        card = this.warningCard({ title: msg });
+        break;
+      case "sky":
+        card = this.skyCard({ title: msg });
+        break;
+      case "yolo":
+        const randy = ["dangerCard", "successCard", "warningCard", "skyCard"][
+          Math.floor(Math.random() * 4)
+        ];
+        card = this[randy]({ title: msg });
+        break;
+    }
+    return card;
+  }
+
   /**
    * Returns an instance of a debugCard
    *

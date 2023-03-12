@@ -22,6 +22,10 @@ async function main(token: string) {
   await inst.start();
   console.log(logoRoll());
   console.log("Websockets Registered. Listening...");
+  const selfData = await inst.getSelf(true);
+  const { displayName, emails } = selfData;
+  const [email] = emails;
+  console.log(`🤖 You can contact your agent '${displayName}' here: ${email}`);
 
   inst.on("message", (websocketEvent: any) => {
     // send to processing incoming websocket

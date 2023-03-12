@@ -15,9 +15,6 @@ const botConfig: Config = {
   },
 };
 
-// In a production environment use a secrets manager to pass in token
-
-// 1) Initialize your bot w/ config
 const CultureBot = new Speedybot(botConfig);
 
 // 2) Export your bot
@@ -206,14 +203,12 @@ CultureBot.exact("alerts", async ($bot) => {
   });
   await $bot.send(sky);
 
-  const b = $bot.skyCard({ title: "Speedybot-mini" });
-  const r = $bot.dangerCard({ title: "Speedybot-mini" });
-  const g = $bot.successCard({ title: "Speedybot-mini" });
-  const y = $bot.warningCard({ title: "Speedybot-mini" });
-  $bot.send(b);
-  $bot.send(r);
-  $bot.send(g);
-  $bot.send(y);
+  // Banners (visually distinctive single-line messaging)
+  $bot.send($bot.banner("Speedybot-mini", "sky")); // bot.skyCard({ title: "Speedybot-mini" }
+  $bot.send($bot.banner("Speedybot-mini", "danger")); // bot.dangerCard({ title: "Speedybot-mini" }
+  $bot.send($bot.banner("Speedybot-mini", "success")); // bot.skyCard({ title: "Speedybot-mini" }
+  $bot.send($bot.banner("Speedybot-mini", "warning")); // bot.skyCard({ title: "Speedybot-mini" }
+  $bot.send($bot.banner("Speedybot-mini", "yolo")); // randomize
 });
 
 // Can handle incoming files but also can *send* files to users

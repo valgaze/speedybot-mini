@@ -20,6 +20,7 @@ import {
   constants,
 } from "./common";
 import { BotConfig, BotInst, WebhookBot } from "./bot";
+import { SpeedyCard } from "./cards";
 
 export type Config = {
   token?: string;
@@ -63,7 +64,135 @@ export type NLUHandlerFunc<F = any> = (
   api: CoreMakerequest
 ) => Promise<void> | void;
 
-export class Speedybot {
+type Secrets<T extends string> = Record<T, string>;
+
+export class Speedybot<T extends string = never> {
+  private secrets: Partial<Secrets<T>> = {};
+
+  /**
+   * Add a secret to your Speedybot bot instance. Note bot tokens are special are are still set by {@link setToken}
+   * **Note:** Once you add a secret it is accessible on the instance so be careful
+   *
+   *
+   * ## Example
+   *
+   * ```ts
+   *
+   * import { Speedybot } from 'speedybot-mini'
+   * type MySecrets = 'special_token1' | 'special_token2'
+   *
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot<MySecrets>('__REPLACE__ME__');
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // Add secret (can happen anytime to keep bots portable)
+   *
+   * CultureBot.addSecret('special_token1', 'xxx-yyy')
+   * CultureBot.getSecret('special_token1') // 'xxx-yyy'
+   *
+   * CultureBot.addSecrets({'special_token2':'aaa-bbb'})
+   * CultureBot.getSecret('special_token2') // 'aaa-bbb'
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+   *  $bot.send('This is the hi greeting handler!')
+   * })
+   *
+   * CultureBot.contains('trigger', async ($bot, msg) => {
+   *  $bot.send('About to trigger the hi trigger')
+   *  $bot.trigger('hi', msg)
+   * })
+   *
+   * ```
+   */
+  addSecret<K extends T>(key: K, value: string): void {
+    this.secrets[key] = value;
+  }
+  /**
+   * Add a several secrets at once to your Speedybot bot instance. Note bot tokens are special are are still set by {@link setToken}
+   * **Note:** Once you add a secret it is accessible on the instance so be careful
+   *
+   * ## Example
+   *
+   * ```ts
+   *
+   * import { Speedybot } from 'speedybot-mini'
+   * type MySecrets = 'special_token1' | 'special_token2'
+   *
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot<MySecrets>('__REPLACE__ME__');
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // Add secret (can happen anytime to keep bots portable)
+   *
+   * CultureBot.addSecrets({'special_token1': 'xxx-yyy', 'special_token2':'aaa-bbb'})
+   * CultureBot.getSecret('special_token1') // 'xxx-yyy'
+   * CultureBot.getSecret('special_token2') // 'aaa-bbb'
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+   *  $bot.send('This is the hi greeting handler!')
+   * })
+   *
+   * CultureBot.contains('trigger', async ($bot, msg) => {
+   *  $bot.send('About to trigger the hi trigger')
+   *  $bot.trigger('hi', msg)
+   * })
+   *
+   * ```
+   */
+  addSecrets(secrets: Partial<Secrets<T>>): void {
+    this.secrets = { ...this.secrets, ...secrets };
+  }
+
+  /**
+   * Retrieve a secret set on your Speedybot bot instance. Note bot tokens are special are are still set by {@link setToken}
+   * **Note:** Once you add a secret it is accessible on the instance so be careful
+   *
+   * ## Example
+   *
+   * ```ts
+   *
+   * import { Speedybot } from 'speedybot-mini'
+   * type MySecrets = 'special_token1' | 'special_token2'
+   *
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot<MySecrets>('__REPLACE__ME__');
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * // Add secret (can happen anytime to keep bots portable)
+   *
+   * CultureBot.addSecret('special_token1', 'xxx-yyy')
+   * CultureBot.getSecret('special_token1') // 'xxx-yyy'
+   *
+   * CultureBot.addSecrets({'special_token2':'aaa-bbb'})
+   * CultureBot.getSecret('special_token2') // 'aaa-bbb'
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+   *  $bot.send('This is the hi greeting handler!')
+   * })
+   *
+   * CultureBot.contains('trigger', async ($bot, msg) => {
+   *  $bot.send('About to trigger the hi trigger')
+   *  $bot.trigger('hi', msg)
+   * })
+   *
+   * ```
+   */
+  public getSecret<K extends T>(key: K): string | undefined {
+    return this.secrets[key];
+  }
+
   public IncomingWebhooks = () => WebhookBot({ token: this.getToken() });
 
   private _config: Config = {
@@ -514,6 +643,8 @@ export class Speedybot {
     };
   }
 
+  setWelcome(handler: string | SpeedyCard) {}
+
   detectType(envelope: ENVELOPES): RequestTypes {
     let type;
     if (envelope.resource === "messages") {
@@ -783,6 +914,45 @@ export class Speedybot {
     return res;
   }
 
+  /**
+   * Add a bot token used to authenticate to APIs
+   *
+   * ## Example
+   *
+   * ```ts
+   *
+   * // 1) Initialize your bot w/ config
+   * const CultureBot = new Speedybot('__REPLACE__ME__');
+   *
+   * // 2) Export your bot
+   * export default CultureBot;
+   *
+   * CultureBot.exposeToken() // '__REPLACE__ME__'
+   *
+   * CultureBot.setToken('__REPLACE__ME__NEW_TOKEN!')
+   *
+   *  CultureBot.exposeToken() // __REPLACE__ME__NEW_TOKEN
+   * // Add secret (can happen anytime to keep bots portable)
+   *
+   * CultureBot.addSecret('special_token1', 'xxx-yyy')
+   * CultureBot.getSecret('special_token1') // 'xxx-yyy'
+   *
+   * CultureBot.addSecrets({'special_token2':'aaa-bbb'})
+   * CultureBot.getSecret('special_token2') // 'aaa-bbb'
+   *
+   * // 3) Do whatever you want!
+   *
+   * CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+   *  $bot.send('This is the hi greeting handler!')
+   * })
+   *
+   * CultureBot.contains('trigger', async ($bot, msg) => {
+   *  $bot.send('About to trigger the hi trigger')
+   *  $bot.trigger('hi', msg)
+   * })
+   *
+   * ```
+   */
   public setToken(token: string) {
     this._config.token = token;
   }

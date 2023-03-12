@@ -213,7 +213,7 @@ export type RootTrigger<T = any> = {
 export type GeneralHandler<T = any> = (
   bot: BotInst,
   msg: T
-) => void | Promise<void> | Promise<MessageReply>;
+) => Promise<void | undefined | MessageReply> | void;
 export type MsgHandler = GeneralHandler<
   RootTrigger<Message_Details> & { text: string }
 >;

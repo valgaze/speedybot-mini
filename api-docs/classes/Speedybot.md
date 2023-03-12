@@ -1,6 +1,12 @@
 [speedybot-mini](../README.md) / [Exports](../modules.md) / Speedybot
 
-# Class: Speedybot
+# Class: Speedybot<T\>
+
+## Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `string` = `never` |
 
 ## Table of contents
 
@@ -15,11 +21,14 @@
 - [handlers](Speedybot.md#handlers)
 - [nluHandler](Speedybot.md#nluhandler)
 - [rootList](Speedybot.md#rootlist)
+- [secrets](Speedybot.md#secrets)
 
 ### Methods
 
 - [IncomingWebhooks](Speedybot.md#incomingwebhooks)
 - [actionHandler](Speedybot.md#actionhandler)
+- [addSecret](Speedybot.md#addsecret)
+- [addSecrets](Speedybot.md#addsecrets)
 - [buildDetails](Speedybot.md#builddetails)
 - [checkList](Speedybot.md#checklist)
 - [checkStrings](Speedybot.md#checkstrings)
@@ -32,6 +41,7 @@
 - [fuzzy](Speedybot.md#fuzzy)
 - [getAuthor](Speedybot.md#getauthor)
 - [getData](Speedybot.md#getdata)
+- [getSecret](Speedybot.md#getsecret)
 - [getSelf](Speedybot.md#getself)
 - [getToken](Speedybot.md#gettoken)
 - [isEnvelope](Speedybot.md#isenvelope)
@@ -49,12 +59,19 @@
 - [setConfig](Speedybot.md#setconfig)
 - [setHandler](Speedybot.md#sethandler)
 - [setToken](Speedybot.md#settoken)
+- [setWelcome](Speedybot.md#setwelcome)
 
 ## Constructors
 
 ### constructor
 
-• **new Speedybot**(`config?`, `makeRequest?`)
+• **new Speedybot**<`T`\>(`config?`, `makeRequest?`)
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `string` = `never` |
 
 #### Parameters
 
@@ -65,7 +82,7 @@
 
 #### Defined in
 
-[lib/speedybot.ts:85](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L85)
+[lib/speedybot.ts:214](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L214)
 
 ## Properties
 
@@ -75,7 +92,7 @@
 
 #### Defined in
 
-[lib/speedybot.ts:100](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L100)
+[lib/speedybot.ts:229](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L229)
 
 ___
 
@@ -85,7 +102,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:69](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L69)
+[lib/speedybot.ts:198](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L198)
 
 ___
 
@@ -109,7 +126,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:101](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L101)
+[lib/speedybot.ts:230](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L230)
 
 ___
 
@@ -119,7 +136,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:116](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L116)
+[lib/speedybot.ts:245](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L245)
 
 ___
 
@@ -129,7 +146,17 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:99](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L99)
+[lib/speedybot.ts:228](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L228)
+
+___
+
+### secrets
+
+• `Private` **secrets**: `Partial`<`Secrets`<`T`\>\> = `{}`
+
+#### Defined in
+
+[lib/speedybot.ts:70](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L70)
 
 ## Methods
 
@@ -152,7 +179,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:67](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L67)
+[lib/speedybot.ts:196](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L196)
 
 ___
 
@@ -172,7 +199,126 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:763](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L763)
+[lib/speedybot.ts:894](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L894)
+
+___
+
+### addSecret
+
+▸ **addSecret**<`K`\>(`key`, `value`): `void`
+
+Add a secret to your Speedybot bot instance. Note bot tokens are special are are still set by [setToken](Speedybot.md#settoken)
+**Note:** Once you add a secret it is accessible on the instance so be careful
+
+## Example
+
+```ts
+
+import { Speedybot } from 'speedybot-mini'
+type MySecrets = 'special_token1' | 'special_token2'
+
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot<MySecrets>('__REPLACE__ME__');
+
+// 2) Export your bot
+export default CultureBot;
+
+// Add secret (can happen anytime to keep bots portable)
+
+CultureBot.addSecret('special_token1', 'xxx-yyy')
+CultureBot.getSecret('special_token1') // 'xxx-yyy'
+
+CultureBot.addSecrets({'special_token2':'aaa-bbb'})
+CultureBot.getSecret('special_token2') // 'aaa-bbb'
+
+// 3) Do whatever you want!
+
+CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+ $bot.send('This is the hi greeting handler!')
+})
+
+CultureBot.contains('trigger', async ($bot, msg) => {
+ $bot.send('About to trigger the hi trigger')
+ $bot.trigger('hi', msg)
+})
+
+```
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `K` | extends `string` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `key` | `K` |
+| `value` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/speedybot.ts:111](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L111)
+
+___
+
+### addSecrets
+
+▸ **addSecrets**(`secrets`): `void`
+
+Add a several secrets at once to your Speedybot bot instance. Note bot tokens are special are are still set by [setToken](Speedybot.md#settoken)
+**Note:** Once you add a secret it is accessible on the instance so be careful
+
+## Example
+
+```ts
+
+import { Speedybot } from 'speedybot-mini'
+type MySecrets = 'special_token1' | 'special_token2'
+
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot<MySecrets>('__REPLACE__ME__');
+
+// 2) Export your bot
+export default CultureBot;
+
+// Add secret (can happen anytime to keep bots portable)
+
+CultureBot.addSecrets({'special_token1': 'xxx-yyy', 'special_token2':'aaa-bbb'})
+CultureBot.getSecret('special_token1') // 'xxx-yyy'
+CultureBot.getSecret('special_token2') // 'aaa-bbb'
+
+// 3) Do whatever you want!
+
+CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+ $bot.send('This is the hi greeting handler!')
+})
+
+CultureBot.contains('trigger', async ($bot, msg) => {
+ $bot.send('About to trigger the hi trigger')
+ $bot.trigger('hi', msg)
+})
+
+```
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `secrets` | `Partial`<`Secrets`<`T`\>\> |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/speedybot.ts:150](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L150)
 
 ___
 
@@ -193,7 +339,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:794](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L794)
+[lib/speedybot.ts:964](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L964)
 
 ___
 
@@ -215,7 +361,7 @@ Returns look up index of matching handler if one exists
 
 #### Defined in
 
-[lib/speedybot.ts:713](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L713)
+[lib/speedybot.ts:844](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L844)
 
 ___
 
@@ -239,7 +385,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:118](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L118)
+[lib/speedybot.ts:247](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L247)
 
 ___
 
@@ -286,7 +432,7 @@ CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
 
 #### Defined in
 
-[lib/speedybot.ts:201](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L201)
+[lib/speedybot.ts:330](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L330)
 
 ___
 
@@ -306,7 +452,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:773](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L773)
+[lib/speedybot.ts:904](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L904)
 
 ___
 
@@ -326,7 +472,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:517](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L517)
+[lib/speedybot.ts:648](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L648)
 
 ___
 
@@ -382,7 +528,7 @@ CultureBot.every(async ($bot, msg) => {
 
 #### Defined in
 
-[lib/speedybot.ts:377](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L377)
+[lib/speedybot.ts:506](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L506)
 
 ___
 
@@ -425,7 +571,7 @@ CultureBot.exact("hi", async ($bot, msg) => {
 
 #### Defined in
 
-[lib/speedybot.ts:239](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L239)
+[lib/speedybot.ts:368](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L368)
 
 ___
 
@@ -439,7 +585,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:96](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L96)
+[lib/speedybot.ts:225](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L225)
 
 ___
 
@@ -481,7 +627,7 @@ CultureBot.fuzzy(["hi", "hey"], async ($bot, msg) => {
 
 #### Defined in
 
-[lib/speedybot.ts:154](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L154)
+[lib/speedybot.ts:283](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L283)
 
 ___
 
@@ -501,7 +647,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:811](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L811)
+[lib/speedybot.ts:981](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L981)
 
 ___
 
@@ -522,7 +668,70 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:848](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L848)
+[lib/speedybot.ts:1018](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L1018)
+
+___
+
+### getSecret
+
+▸ **getSecret**<`K`\>(`key`): `undefined` \| `string`
+
+Retrieve a secret set on your Speedybot bot instance. Note bot tokens are special are are still set by [setToken](Speedybot.md#settoken)
+**Note:** Once you add a secret it is accessible on the instance so be careful
+
+## Example
+
+```ts
+
+import { Speedybot } from 'speedybot-mini'
+type MySecrets = 'special_token1' | 'special_token2'
+
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot<MySecrets>('__REPLACE__ME__');
+
+// 2) Export your bot
+export default CultureBot;
+
+// Add secret (can happen anytime to keep bots portable)
+
+CultureBot.addSecret('special_token1', 'xxx-yyy')
+CultureBot.getSecret('special_token1') // 'xxx-yyy'
+
+CultureBot.addSecrets({'special_token2':'aaa-bbb'})
+CultureBot.getSecret('special_token2') // 'aaa-bbb'
+
+// 3) Do whatever you want!
+
+CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+ $bot.send('This is the hi greeting handler!')
+})
+
+CultureBot.contains('trigger', async ($bot, msg) => {
+ $bot.send('About to trigger the hi trigger')
+ $bot.trigger('hi', msg)
+})
+
+```
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `K` | extends `string` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `key` | `K` |
+
+#### Returns
+
+`undefined` \| `string`
+
+#### Defined in
+
+[lib/speedybot.ts:192](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L192)
 
 ___
 
@@ -536,7 +745,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:834](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L834)
+[lib/speedybot.ts:1004](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L1004)
 
 ___
 
@@ -550,7 +759,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:790](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L790)
+[lib/speedybot.ts:960](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L960)
 
 ___
 
@@ -570,7 +779,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:888](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L888)
+[lib/speedybot.ts:1058](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L1058)
 
 ___
 
@@ -591,7 +800,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:825](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L825)
+[lib/speedybot.ts:995](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L995)
 
 ___
 
@@ -643,7 +852,7 @@ CultureBot.nlu("hi", async ($bot, msg, api) => {
 
 #### Defined in
 
-[lib/speedybot.ts:280](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L280)
+[lib/speedybot.ts:409](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L409)
 
 ___
 
@@ -686,7 +895,7 @@ CultureBot.noMatch(async ($bot, msg) => {
 
 #### Defined in
 
-[lib/speedybot.ts:338](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L338)
+[lib/speedybot.ts:467](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L467)
 
 ___
 
@@ -708,7 +917,7 @@ Camera handler-- will trigger by default for png, jpeg, & jpg
 
 #### Defined in
 
-[lib/speedybot.ts:421](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L421)
+[lib/speedybot.ts:550](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L550)
 
 ___
 
@@ -756,7 +965,7 @@ CultureBot.onFile(async ($bot, msg, fileData) => {
 
 #### Defined in
 
-[lib/speedybot.ts:457](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L457)
+[lib/speedybot.ts:586](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L586)
 
 ___
 
@@ -810,7 +1019,7 @@ CultureBot.onSubmit(async ($bot, msg, fileData) => {
 
 #### Defined in
 
-[lib/speedybot.ts:507](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L507)
+[lib/speedybot.ts:636](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L636)
 
 ___
 
@@ -832,7 +1041,7 @@ Cheap way to get content-dispoition header & content-type and get extension
 
 #### Defined in
 
-[lib/speedybot.ts:882](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L882)
+[lib/speedybot.ts:1052](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L1052)
 
 ___
 
@@ -852,7 +1061,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:535](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L535)
+[lib/speedybot.ts:666](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L666)
 
 ___
 
@@ -872,7 +1081,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:664](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L664)
+[lib/speedybot.ts:795](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L795)
 
 ___
 
@@ -899,7 +1108,7 @@ Note: All queries are lower-cased
 
 #### Defined in
 
-[lib/speedybot.ts:691](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L691)
+[lib/speedybot.ts:822](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L822)
 
 ___
 
@@ -940,7 +1149,7 @@ CultureBot.regex(new RegExp('x'), async ($bot, msg) => {
 
 #### Defined in
 
-[lib/speedybot.ts:307](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L307)
+[lib/speedybot.ts:436](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L436)
 
 ___
 
@@ -967,7 +1176,7 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:396](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L396)
+[lib/speedybot.ts:525](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L525)
 
 ___
 
@@ -988,13 +1197,51 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:425](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L425)
+[lib/speedybot.ts:554](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L554)
 
 ___
 
 ### setToken
 
 ▸ **setToken**(`token`): `void`
+
+Add a bot token used to authenticate to APIs
+
+## Example
+
+```ts
+
+// 1) Initialize your bot w/ config
+const CultureBot = new Speedybot('__REPLACE__ME__');
+
+// 2) Export your bot
+export default CultureBot;
+
+CultureBot.exposeToken() // '__REPLACE__ME__'
+
+CultureBot.setToken('__REPLACE__ME__NEW_TOKEN!')
+
+ CultureBot.exposeToken() // __REPLACE__ME__NEW_TOKEN
+// Add secret (can happen anytime to keep bots portable)
+
+CultureBot.addSecret('special_token1', 'xxx-yyy')
+CultureBot.getSecret('special_token1') // 'xxx-yyy'
+
+CultureBot.addSecrets({'special_token2':'aaa-bbb'})
+CultureBot.getSecret('special_token2') // 'aaa-bbb'
+
+// 3) Do whatever you want!
+
+CultureBot.contains(["hi", "hey"], async ($bot, msg) => {
+ $bot.send('This is the hi greeting handler!')
+})
+
+CultureBot.contains('trigger', async ($bot, msg) => {
+ $bot.send('About to trigger the hi trigger')
+ $bot.trigger('hi', msg)
+})
+
+```
 
 #### Parameters
 
@@ -1008,4 +1255,24 @@ ___
 
 #### Defined in
 
-[lib/speedybot.ts:786](https://github.com/valgaze/speedybot-mini/blob/140aeaa/src/lib/speedybot.ts#L786)
+[lib/speedybot.ts:956](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L956)
+
+___
+
+### setWelcome
+
+▸ **setWelcome**(`handler`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `handler` | `string` \| [`SpeedyCard`](SpeedyCard.md) |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/speedybot.ts:646](https://github.com/valgaze/speedybot-mini/blob/ea4b11b/src/lib/speedybot.ts#L646)

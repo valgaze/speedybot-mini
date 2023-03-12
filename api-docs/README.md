@@ -1,6 +1,22 @@
 speedybot-mini / [Exports](modules.md)
 
-![sb](https://github.com/valgaze/speedybot-mini/raw/deploy/docs/assets/logo.png?raw=true)
+<p align="center">
+  <a href="https://www.npmjs.com/package/speedybot-mini">
+    <picture>
+      <source media="(prefers-color-scheme: dark)"  srcset="https://github.com/valgaze/speedybot-mini/raw/deploy/docs/assets/logo.png?raw=true">
+      <source media="(prefers-color-scheme: light)" srcset="https://github.com/valgaze/speedybot-mini/raw/deploy/docs/assets/logo.png?raw=true">
+    <img alt="speedybot-mini" src="https://www.npmjs.com/package/speedybot-mini">
+    </picture>
+  </a>
+</p>
+
+<p align="center">
+  <b><a href="https://github.com/valgaze/speedybot-mini/blob/deploy/api-docs/modules.md#classes">📚 API Docs</a> |
+  <a href="#quickstarts">🚀 Quickstarts</a></b> |
+  <a href="https://github.com/valgaze/speedybot-mini/discussions">💬 Get Help</a></b>
+</p>
+
+[![npm version](https://badge.fury.io/js/speedybot-mini.svg)](https://www.npmjs.com/package/speedybot-mini)
 
 ## Speedybot-mini
 
