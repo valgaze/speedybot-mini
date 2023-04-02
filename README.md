@@ -1,10 +1,6 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/speedybot-mini">
-    <picture>
-      <source media="(prefers-color-scheme: dark)"  srcset="https://github.com/valgaze/speedybot-mini/raw/deploy/docs/assets/logo.png?raw=true">
-      <source media="(prefers-color-scheme: light)" srcset="https://github.com/valgaze/speedybot-mini/raw/deploy/docs/assets/logo.png?raw=true">
-    <img alt="speedybot-mini" src="https://www.npmjs.com/package/speedybot-mini">
-    </picture>
+    <img src="https://github.com/valgaze/speedybot-mini/raw/deploy/docs/assets/logo.png?raw=true" />
   </a>
 </p>
 
